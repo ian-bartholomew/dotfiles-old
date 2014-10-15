@@ -28,7 +28,6 @@ apps=(
   omnifocus
   mou  
   transmit
-  sketch  
   spotify
   sublime-text3  
   textmate
