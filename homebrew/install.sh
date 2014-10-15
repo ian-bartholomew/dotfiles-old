@@ -13,6 +13,34 @@ then
 fi
 
 # Install homebrew packages
-brew install grc coreutils spark
+brew install grc coreutils spark findutils
+
+# Install Casks
+brew install caskroom/cask/brew-cask
+
+# Apps
+apps=(
+  adium
+  dropbox
+  firefox
+  google-chrome    
+  iterm2
+  omnifocus
+  mou  
+  transmit
+  sketch  
+  spotify
+  sublime-text3  
+  textmate
+  the-unarchiver
+  vagrant
+  virtualbox
+  vlc
+)
+
+# Install apps to /Applications
+# Default is: /Users/$user/Applications
+echo "installing apps..."
+brew cask install --appdir="/Applications" ${apps[@]}
 
 exit 0
