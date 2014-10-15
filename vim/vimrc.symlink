@@ -1,4 +1,146 @@
-syntax on
+" Example Vim configuration.
+" C
+" Copy or symlink to ~/.vimrc or ~/_vimrc.
 
-" Wrap gitcommit file types at the appropriate length
-filetype indent plugin on
+set nocompatible                  " Must come first because it changes other options.
+
+silent! call pathogen#infect()
+silent! call pathogen#runtime_append_all_bundles()
+
+syntax enable                     " Turn on syntax highlighting.
+filetype plugin indent on         " Turn on file type detection.
+
+runtime macros/matchit.vim        " Load the matchit plugin.
+
+set showcmd                       " Display incomplete commands.
+set showmode                      " Display the mode you're in.
+
+set backspace=indent,eol,start    " Intuitive backspacing.
+
+set hidden                        " Handle multiple buffers better.
+
+set wildmenu                      " Enhanced command line completion.
+set wildmode=list:longest         " Complete files like a shell.
+
+set ignorecase                    " Case-insensitive searching.
+set smartcase                     " But case-sensitive if expression contains a capital letter.
+
+set number                        " Show line numbers.
+set ruler                         " Show cursor position.
+
+set incsearch                     " Highlight matches as you type.
+set hlsearch                      " Highlight matches.
+
+set wrap                          " Turn on line wrapping.
+set scrolloff=3                   " Show 3 lines of context around the cursor.
+
+set title                         " Set the terminal's title
+
+set visualbell                    " No beeping.
+
+set nobackup                      " Don't make a backup before overwriting a file.
+set nowritebackup                 " And again.
+set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
+
+" UNCOMMENT TO USE
+set tabstop=4                    " Global tab width.
+set shiftwidth=4                 " And again, related.
+set expandtab                    " Use spaces instead of tabs
+
+set laststatus=2                  " Show the status line all the time
+
+" Useful status information at bottom of screen
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
+
+set cursorline
+
+" set t_Co=88
+" Or use vividchalk
+colorscheme twilight
+
+" Tab mappings.
+map <leader>tt :tabnew<cr>
+map <leader>te :tabedit
+map <leader>tc :tabclose<cr>
+map <leader>to :tabonly<cr>
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprevious<cr>
+map <leader>tf :tabfirst<cr>
+map <leader>tl :tablast<cr>
+map <leader>tm :tabmove
+
+nmap <silent> <c-n> :NERDTreeToggle<CR>
+
+" Uncomment to use Jamis Buck's file opening plugin
+"map <Leader>t :FuzzyFinderTextMate<Enter>
+
+" Controversial...swap colon and semicolon for easier commands
+"nnoremap ; :
+"nnoremap : ;
+
+"vnoremap ; :
+"vnoremap : ;
+
+" Automatic fold settings for specific files. Uncomment to use.
+" autocmd FileType ruby setlocal foldmethod=syntax
+" autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
+
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
+
+" For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
+autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+autocmd BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+
+
+"folding settings
+set foldmethod=indent   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
+
+" set 'make' command when editing php files
+set makeprg=php\ -l\ %
+set errorformat=%m\ in\ %f\ on\ line\ %l
+
+" highlights interpolated variables in sql strings and does sql-syntax highlighting. yay
+autocmd FileType php let php_sql_query=1
+" does exactly that. highlights html inside of php strings
+autocmd FileType php let php_htmlInStrings=1
+"discourages use oh short tags. c'mon its deprecated remember
+autocmd FileType php let php_noShortTags=1
+" automagically folds functions & methods. this is getting IDE-like isn't it?
+autocmd FileType php let php_folding=1
+
+" set auto-highlighting of matching brackets for php only
+autocmd FileType php DoMatchParen
+autocmd FileType php hi MatchParen ctermbg=blue guibg=lightblue
+
+" autocomplete funcs and identifiers for languages
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS listchars=eol:$,tab:>-,trail:~,extends:>,precedes:< list" Show non whitespace characters
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType haml set cursorcolumn
+
+" automatically strip trailing whitespace when a file is saved
+autocmd BufWritePre * :%s/\s\+$//e
+
+"auto save session
+let g:session_autosave = 'yes'
+
+"auto load default session
+let g:session_default_to_last = 1
+let g:session_autoload = 'yes'
+
+vmap <leader>cc :s/^/#/<cr>
+vmap <leader>co :s/^#//<cr>
