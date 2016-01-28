@@ -52,7 +52,7 @@ set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
@@ -61,7 +61,7 @@ set cursorline
 
 " set t_Co=88
 " Or use vividchalk
-colorscheme twilight
+colorscheme wombat256
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
