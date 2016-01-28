@@ -20,21 +20,21 @@ brew install caskroom/cask/brew-cask
 
 # Apps
 apps=(
-  adium
-  dropbox
-  firefox
-  google-chrome    
+  # adium
+  # dropbox
+  # firefox
+  # google-chrome
   iterm2
-  omnifocus
-  mou  
-  transmit
+  # omnifocus
+  # mou
+  # transmit
   spotify
-  sublime-text3  
-  textmate
-  the-unarchiver
-  vagrant
-  virtualbox
-  vlc
+  # sublime-text3
+  # textmate
+  # the-unarchiver
+  # vagrant
+  # virtualbox
+  # vlc
 )
 
 # Install apps to /Applications
