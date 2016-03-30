@@ -1,9 +1,12 @@
 "*":
+  "atom-beautify":
+    _analyticsUserId: "9df960d8-9f3e-4876-b989-9685b178bb3f"
   core:
     disabledPackages: [
       "background-tips"
       "exception-reporting"
       "metrics"
+      "jshint"
     ]
     followSymlinks: false
     hideGitIgnoredFiles: true
@@ -21,6 +24,8 @@
     invisibles: {}
     showIndentGuide: true
     softWrapAtPreferredLineLength: true
+  "linter-jshint":
+    executablePath: "/usr/local/bin/jshint"
   "release-notes":
     viewedVersion: "0.89.0"
   "spell-check":
