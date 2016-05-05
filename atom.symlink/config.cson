@@ -2,11 +2,24 @@
   "atom-beautify":
     _analyticsUserId: "9df960d8-9f3e-4876-b989-9685b178bb3f"
   core:
+    customFileTypes:
+      "source.ini": [
+        ".buckconfig"
+        ".flowconfig"
+      ]
+      "source.json": [
+        ".arcconfig"
+      ]
+      "source.python": [
+        "BUCK"
+      ]
     disabledPackages: [
       "background-tips"
       "exception-reporting"
       "metrics"
       "jshint"
+      "tree-view"
+      "linter-jshint"
     ]
     followSymlinks: false
     hideGitIgnoredFiles: true
@@ -18,14 +31,42 @@
       "tmp"
       "vendor"
     ]
+    themes: [
+      "spacegray-dark-ui"
+      "atom-dark-fusion-syntax"
+    ]
   editor:
     fontFamily: "Menlo"
     fontSize: 15
     invisibles: {}
     showIndentGuide: true
     softWrapAtPreferredLineLength: true
+  "file-watcher":
+    promptWhenFileHasChangedOnDisk: false
+  linter:
+    errorPanelHeight: 145
+  "linter-eslint":
+    useGlobalEslint: true
   "linter-jshint":
     executablePath: "/usr/local/bin/jshint"
+  nuclide:
+    "nuclide-arcanist": {}
+    "nuclide-buck-files": {}
+    "nuclide-clang-atom": {}
+    "nuclide-console": {}
+    "nuclide-datatip": {}
+    "nuclide-debugger-hhvm": {}
+    "nuclide-flow": {}
+    "nuclide-format-js": {}
+    "nuclide-hack": {}
+    "nuclide-health": {}
+    "nuclide-home":
+      showHome: false
+    "nuclide-ios-simulator-logs": {}
+    "nuclide-ocaml": {}
+    "nuclide-python": {}
+    "nuclide-react-native": {}
+    "nuclide-working-sets": {}
   "release-notes":
     viewedVersion: "0.89.0"
   "spell-check":

@@ -10,10 +10,10 @@ silent! call pathogen#runtime_append_all_bundles()
 syntax enable                     " Turn on syntax highlighting.
 filetype plugin indent on         " Turn on file type detection.
 
-runtime macros/matchit.vim        " Load the matchit plugin.
-
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
+
+set showmatch                     " Show matching parenthesis
 
 set backspace=indent,eol,start    " Intuitive backspacing.
 
@@ -31,7 +31,7 @@ set ruler                         " Show cursor position.
 set incsearch                     " Highlight matches as you type.
 set hlsearch                      " Highlight matches.
 
-set wrap                          " Turn on line wrapping.
+set nowrap                          " Turn on line wrapping.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 
 set title                         " Set the terminal's title
@@ -39,23 +39,35 @@ set title                         " Set the terminal's title
 set visualbell                    " No beeping.
 
 set nobackup                      " Don't make a backup before overwriting a file.
+set noswapfile                    " Same, swappy
 set nowritebackup                 " And again.
 set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 
 " UNCOMMENT TO USE
-set tabstop=4                    " Global tab width.
-set shiftwidth=4                 " And again, related.
+set tabstop=2                    " Global tab width.
+set shiftwidth=2                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
+set autoindent                   " Use autoindent
+set copyindent                   " Copy the last indent on autoindent
+
+set wildignore=*.swp,*.bak,*.pyc,*.class
 
 set laststatus=2                  " Show the status line all the time
+
+set mouse=a                       " Set mouse support if terminal supports it
+set clipboard=unnamed             " Normal OS clipboard interaction
 
 " Useful status information at bottom of screen
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=1
+
+" Syntastic options
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 set cursorline
 
@@ -99,11 +111,14 @@ filetype plugin on    " Enable filetype-specific plugins
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 autocmd BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
+au BufRead,BufNewFile *.json set filetype=json
+
 
 "folding settings
 set foldmethod=indent   "fold based on indent
 set foldnestmax=10      "deepest fold is 10 levels
 set nofoldenable        "dont fold by default
+
 set foldlevel=1         "this is just what i use
 
 " set 'make' command when editing php files
@@ -158,7 +173,8 @@ set t_Co=256
 syntax on
 set background=dark
 "colorscheme distinguished
-colorscheme motus
+" colorscheme motus
+colorscheme torte
 
 " ctrlp plugin
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -171,3 +187,9 @@ let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 let g:session_autosave_periodic = 5
 let g:session_default_to_last = 1
+
+" Syntastic React
+let g:syntastic_javascript_checkers = ['eslint']
+
+" React syntax in js files
+let g:jsx_ext_required = 0
