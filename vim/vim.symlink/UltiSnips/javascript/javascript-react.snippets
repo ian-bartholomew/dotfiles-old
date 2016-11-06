@@ -1,0 +1,183 @@
+#
+#  React snippets
+#
+
+snippet cdm "component did mount" b
+componentDidMount() {
+	${1}
+}$0
+endsnippet
+
+snippet cdup "component did update" b
+componentDidUpdate(prevProps, prevState) {
+	${1}
+}$0
+endsnippet
+
+snippet cwm "component will mount" b
+componentWillMount() {
+	${1}
+}$0
+endsnippet
+
+snippet cwr "component will receive props" b
+componentWillReceiveProps(nextProps) {
+	${1}
+}$0
+endsnippet
+
+snippet cwun "component will unmount" b
+componentWillUnmount() {
+	${1}
+}$0
+endsnippet
+
+snippet cwu "component will update" b
+componentWillUpdate(nextProps, nextState) {
+	${1}
+}$0
+endsnippet
+
+snippet cx
+cx({
+	${1}: ${2}
+});
+endsnippet
+
+snippet fup
+forceUpdate(${1:callback});
+endsnippet
+
+snippet gdp "get default props" b
+getDefaultProps() {
+	return {
+		${1}
+	};
+}$0
+endsnippet
+
+snippet gis "get initial state" b
+getInitialState() {
+	return {
+		${1}: ${2}
+	};
+}$0
+endsnippet
+
+snippet jsx "define jsx dom" b
+import React from 'react';
+
+class ${1:ClassName} extends React.Component {
+	render() {
+		return (
+			${VISUAL}$4
+		)
+	}
+}
+
+$1.propTypes = {};
+
+export default $1;$0
+endsnippet
+
+snippet ren
+render() {
+	return (
+		${1:<div />}
+	);
+}$0
+endsnippet
+
+snippet sst "set state" b
+this.setState({
+	${1}: ${2}
+});$0
+endsnippet
+
+snippet scu "should component update"
+shouldComponentUpdate(nextProps, nextState) {
+	${1}
+}$0
+endsnippet
+
+snippet props "get property" i
+this.props.${1}
+endsnippet
+
+snippet state "get state" i
+this.state.${1}
+endsnippet
+
+snippet trp
+this.transferPropsTo(${VISUAL}$0);
+endsnippet
+
+snippet tag
+<${1:tag_name}>
+	${2}
+</$1>
+endsnippet
+
+snippet jest
+import React from 'react';
+import { shallow } from 'enzyme';
+import ${1:Component} from './$1';
+
+it('renders without crashing', () => {
+  shallow(<$1 />);
+});
+endsnippet
+
+snippet it
+it('${1}', () => {
+	${2}
+});
+endsnippet
+
+snippet ptf "React.PropTypes.function"
+React.PropTypes.func,$0
+endsnippet
+
+snippet ptfr "React.PropTypes.required function"
+React.PropTypes.func.isRequired,$0
+endsnippet
+
+snippet ptar "React.PropTypes.required array"
+React.PropTypes.array.isRequired,$0
+endsnippet
+
+snippet pta "React.PropTypes.array"
+React.PropTypes.array,$0
+endsnippet
+
+snippet ptb "React.PropTypes.boolean"
+React.PropTypes.bool,$0
+endsnippet
+
+snippet ptbr "React.PropTypes.required boolean"
+React.PropTypes.bool.isRequired,$0
+endsnippet
+
+snippet pts "React.PropTypes.string"
+React.PropTypes.string,$0
+endsnippet
+
+snippet ptsr "React.PropTypes.required string"
+React.PropTypes.string.isRequired,$0
+endsnippet
+
+snippet ptn "React.PropTypes.number"
+React.PropTypes.number,$0
+endsnippet
+
+snippet ptnr "React.PropTypes.required number"
+React.PropTypes.number.isRequired,$0
+endsnippet
+
+snippet pto "React.PropTypes.object"
+React.PropTypes.object,$0
+endsnippet
+
+snippet ptor "React.PropTypes.required object"
+React.PropTypes.object.isRequired,$0
+endsnippet

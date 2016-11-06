@@ -79,10 +79,12 @@ export PATH="/usr/local/share/npm/bin:$HOME/bin:$PATH"
 echo "" && figlet -w 200 -f ticksslant Hello Ian && echo ""
 
 # Added by Dato Launcher v2.2.3
-export PATH="/Users/ibartholomew/anaconda/bin:$PATH"
+# export PATH="/Users/ibartholomew/anaconda/bin:$PATH"
 
 # Java stuff
 JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk/Contents/Home
 export JAVA_HOME
 export PATH=$PATH:$JAVA_HOME/bin
 export GOPATH="$HOME/go"
+
+alias grep='grep --exclude-dir={.git,node_modules}'
