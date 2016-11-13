@@ -40,3 +40,7 @@ nnoremap <space> za
 " buffers
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
+
+" NERDCommenter
+nnoremap ,c :call NERDComment(0,"toggle")<CR>
+vnoremap ,c :call NERDComment(0,"toggle")<CR>

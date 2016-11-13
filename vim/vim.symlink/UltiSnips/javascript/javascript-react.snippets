@@ -112,12 +112,6 @@ snippet trp
 this.transferPropsTo(${VISUAL}$0);
 endsnippet
 
-snippet tag
-<${1:tag_name}>
-	${2}
-</$1>
-endsnippet
-
 snippet jest
 import React from 'react';
 import { shallow } from 'enzyme';
@@ -132,6 +126,12 @@ snippet it
 it('${1}', () => {
 	${2}
 });
+endsnippet
+
+snippet pt "React.PropTypes"
+$1.propTypes = {
+	$2
+};
 endsnippet
 
 snippet ptf "React.PropTypes.function"
@@ -180,4 +180,18 @@ endsnippet
 
 snippet ptor "React.PropTypes.required object"
 React.PropTypes.object.isRequired,$0
+endsnippet
+
+snippet	ptaof "React.PropTypes.arrayOf"
+React.PropTypes.arrayOf($1),
+endsnippet
+
+snippet	ptoof "React.PropTypes.objectOf"
+React.PropTypes.objectOf($1),
+endsnippet
+
+snippet	ptsh "React.PropTypes.shape"
+React.PropTypes.shape({
+	$1: $2
+})
 endsnippet

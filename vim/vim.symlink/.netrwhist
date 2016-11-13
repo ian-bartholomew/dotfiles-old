@@ -1,11 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/ibartholomew/Dev/nike/rwm-ui'
-let g:netrw_dirhist_2='/Users/ibartholomew/Dev/nike/run-with-me-run-service'
-let g:netrw_dirhist_3='/Users/ibartholomew/Dev/nike/run-with-me-run-service/src'
-let g:netrw_dirhist_4='/Users/ibartholomew/Dev/nike/run-with-me-run-service/src/main'
-let g:netrw_dirhist_5='/Users/ibartholomew/Dev/nike/run-with-me-run-service/src/main/java'
-let g:netrw_dirhist_6='/Users/ibartholomew/Dev/nike/run-with-me-ui'
-let g:netrw_dirhist_7='/Users/ibartholomew/Dev/nike/run-with-me-ui-clean'
-let g:netrw_dirhist_8='/Users/ibartholomew/Dev/nike/run-with-me-ui'
-let g:netrw_dirhist_9='/Users/ibartholomew/.dotfiles/vim/vim.symlink/modules'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/ibartholomew/Dev/nike/run-with-me-ui'
+let g:netrw_dirhist_2='/Users/ibartholomew/.dotfiles/vim/vim.symlink/plugged/YouCompleteMe'
+let g:netrw_dirhist_3='/Users/ibartholomew/.dotfiles/vim/vim.symlink'
+let g:netrw_dirhist_4='/Users/ibartholomew/.dotfiles/vim/vim.symlink/modules'
