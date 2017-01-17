@@ -41,6 +41,17 @@ nnoremap <space> za
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 
+" Edit the vimrc file
+nmap <silent> <leader>ev :e ~/.dotfiles/vim/vimrc.symlink<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Pull word under cursor into LHS of a substitute (for quick search and replace)
+nmap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+
 " NERDCommenter
 nnoremap ,c :call NERDComment(0,"toggle")<CR>
 vnoremap ,c :call NERDComment(0,"toggle")<CR>
+
+iab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit
+iab llorem Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu.  Nulla non quam erat, luctus consequat nisi
+iab lllorem Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu.  Nulla non quam erat, luctus consequat nisi.  Integer hendrerit lacus sagittis erat fermentum tincidunt.  Cras vel dui neque.  In sagittis commodo luctus.  Mauris non metus dolor, ut suscipit dui.  Aliquam mauris lacus, laoreet et consequat quis, bibendum id ipsum.  Donec gravida, diam id imperdiet cursus, nunc nisl bibendum sapien, eget tempor neque elit in tortor

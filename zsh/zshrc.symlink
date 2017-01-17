@@ -49,7 +49,25 @@ fi
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(aws gitflow docker docker-compose node npm brew brew-cask giti colored-man colorize git-extras git zsh-autosuggestions)
+plugins=(
+aws 
+brew 
+brew-cask 
+colored-man 
+colorize 
+docker 
+git 
+git-extras 
+gitignore
+gitflow 
+giti 
+node 
+npm 
+pylint
+python
+yarn
+zsh-autosuggestions 
+)
 
 source $ZSH/oh-my-zsh.sh
 
