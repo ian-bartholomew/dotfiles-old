@@ -65,6 +65,8 @@ node
 npm 
 pylint
 python
+tmux
+tmuxinator
 yarn
 zsh-autosuggestions 
 )
@@ -80,12 +82,12 @@ export PATH="/usr/local/share/npm/bin:$HOME/bin:$PATH"
 #export PATH="/Users/ibartholomew/bin:/Users/ibartholomew/.gem/ruby/1.8/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/go/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+ # Preferred editor for local and remote sessions
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='nvim'
+ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
