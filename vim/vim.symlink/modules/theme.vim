@@ -12,3 +12,6 @@ set statusline+=%*
 
 " Always show statusline
 set laststatus=2
+
+" Set the gutter a different color
+highlight ColorColumn ctermbg=236 guibg=#2c2d27

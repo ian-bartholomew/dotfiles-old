@@ -7,6 +7,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'cakebaker/scss-syntax.vim', {'for': 'scss'}
 Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'exu/pgsql.vim'
 Plug 'godlygeek/tabular'
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'jistr/vim-nerdtree-tabs'
@@ -25,6 +26,7 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
+Plug 'suan/vim-instant-markdown'
 Plug 'sheerun/vim-polyglot'
 Plug 'tmhedberg/SimpylFold'
 Plug 'tpope/vim-abolish'
@@ -38,3 +40,4 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/indentpython.vim', { 'for': 'python' }
 Plug 'vim-scripts/nginx.vim', { 'for': 'nginx' }
+Plug 'w0rp/ale'

@@ -6,3 +6,6 @@ match ErrorMsg '\s\+$'
 autocmd BufWritePre * :%s/\s\+$//e
 
 set wildignore+=node_modlues/** 
+
+" add a gutter 
+let &colorcolumn=join(range(81,999),",")

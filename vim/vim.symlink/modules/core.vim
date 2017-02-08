@@ -2,6 +2,7 @@ set nocompatible                 " be iMproved, required
 
 syntax enable                    " Turn on syntax highlighting.
 
+
 filetype on
 filetype plugin on
 filetype plugin indent on        " Turn on file type detection.
@@ -10,9 +11,9 @@ set autoindent                   " Use autoindent
 set autoread                     " Manually refresh file
 set backspace=indent,eol,start   " Intuitive backspacing.
 set clipboard=unnamed            " Normal OS clipboard interaction
-set colorcolumn=80               " set a marker at 80 characters
 set copyindent                   " Copy the last indent on autoindent
 set cursorline
+set cursorcolumn                 " add a vertical cursor highlight
 set directory=$HOME/.vim/tmp//,. " Keep swap files in one location
 set encoding=utf-8
 set eol                          " Add new line to end of file on save
@@ -33,6 +34,7 @@ set noswapfile                   " Same, swappy
 set nowrap                       " Turn on line wrapping.
 set nowritebackup                " And again.
 set number                       " Show line numbers.
+set relativenumber               " Show relative line numbers.
 set ruler                        " Show cursor position.
 set scrolloff=3                  " Show 3 lines of context around the cursor.
 set shiftwidth=2                 " And again, related.
