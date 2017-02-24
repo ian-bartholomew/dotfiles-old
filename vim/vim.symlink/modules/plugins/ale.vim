@@ -1,6 +1,2 @@
-set nocompatible
-filetype off
-
-let &runtimepath.=',~/.vim/bundle/ale'
-
-filetype plugin on
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1

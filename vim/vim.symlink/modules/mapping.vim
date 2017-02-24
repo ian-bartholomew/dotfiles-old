@@ -3,13 +3,6 @@ function! s:trim_trailing_whitespace()
   %s/\s\+$//e
 endfunction
 
-" Print out the current mappings.
-function! s:show_mappings()
-  let path = Dot('mappings.sh')
-  exec '!' . path
-endfunction
-
-nnoremap <silent> <leader><leader> :call <SID>show_mappings()<CR>
 noremap <silent> <leader>cw :call <SID>trim_trailing_whitespace()<CR>
 
 "Better window navigation
@@ -28,7 +21,7 @@ nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 
-" Lets break some bad habits 
+" Lets break some bad habits
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
@@ -51,6 +44,12 @@ nmap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 " NERDCommenter
 nnoremap ,c :call NERDComment(0,"toggle")<CR>
 vnoremap ,c :call NERDComment(0,"toggle")<CR>
+
+" fix for fat fingering 
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
 
 iab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit
 iab llorem Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu.  Nulla non quam erat, luctus consequat nisi

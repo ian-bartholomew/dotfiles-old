@@ -1,11 +1,11 @@
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'cakebaker/scss-syntax.vim', {'for': 'scss'}
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'exu/pgsql.vim'
 Plug 'godlygeek/tabular'
@@ -17,7 +17,6 @@ Plug 'mileszs/ack.vim'
 Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'morhetz/gruvbox'
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-Plug 'nvie/vim-flake8', { 'for': 'python' }
 Plug 'othree/es.next.syntax.vim', {'for': 'javascript'}
 Plug 'othree/html5.vim'
 Plug 'othree/jsdoc-syntax.vim', { 'for': 'javascript' }
@@ -25,7 +24,7 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'scrooloose/syntastic'
+Plug 'vim-syntastic/syntastic'
 Plug 'suan/vim-instant-markdown'
 Plug 'sheerun/vim-polyglot'
 Plug 'tmhedberg/SimpylFold'

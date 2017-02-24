@@ -2,7 +2,6 @@ set nocompatible                 " be iMproved, required
 
 syntax enable                    " Turn on syntax highlighting.
 
-
 filetype on
 filetype plugin on
 filetype plugin indent on        " Turn on file type detection.
@@ -23,7 +22,6 @@ set foldmethod=indent            " fold based on indent
 set foldnestmax=10               " deepest fold is 10 levels
 set hidden                       " Handle multiple buffers better.
 set hlsearch                     " Highlight matches.
-set inccommand=split             " incremental command splitting 
 set ignorecase                   " Case-insensitive searching.
 set incsearch                    " Highlight matches as you type.
 set laststatus=2                 " Show the status line all the time
@@ -48,3 +46,8 @@ set visualbell                   " No beeping.
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set wildmenu                     " Enhanced command line completion.
 set wildmode=list:longest        " Complete files like a shell.
+
+" toggle invisible characters
+set list
+set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+set showbreak=↪

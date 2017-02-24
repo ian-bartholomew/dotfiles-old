@@ -8,5 +8,3 @@ function ALE() abort
 endfunction
 let g:airline_section_error = '%{ALE()}'
 
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1

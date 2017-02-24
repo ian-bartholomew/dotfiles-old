@@ -14,4 +14,6 @@ set statusline+=%*
 set laststatus=2
 
 " Set the gutter a different color
-highlight ColorColumn ctermbg=236 guibg=#2c2d27
+"highlight ColorColumn ctermbg=236 guibg=#2c2d27
+highlight LineNr ctermfg=grey ctermbg=237
+hi CusorColumn ctermbg=236:
