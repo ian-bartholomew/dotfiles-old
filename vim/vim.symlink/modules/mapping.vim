@@ -5,21 +5,15 @@ endfunction
 
 noremap <silent> <leader>cw :call <SID>trim_trailing_whitespace()<CR>
 
+" call cx + co for omnicompletion 
+inoremap <C-Space> <C-x><C-o>
+inoremap <C-@> <c-x><c-o>
+
 "Better window navigation
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-
-" Tabs
-nnoremap th  :tabfirst<CR>
-nnoremap tj  :tabnext<CR>
-nnoremap tk  :tabprev<CR>
-nnoremap tl  :tablast<CR>
-nnoremap tt  :tabedit<Space>
-nnoremap tn  :tabnext<Space>
-nnoremap tm  :tabm<Space>
-nnoremap td  :tabclose<CR>
 
 " Lets break some bad habits
 noremap <Up> <NOP>
@@ -27,16 +21,9 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-" Enable folding with the spacebar
-nnoremap <space> za
-
 " buffers
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
-
-" Edit the vimrc file
-nmap <silent> <leader>ev :e ~/.dotfiles/vim/vimrc.symlink<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Pull word under cursor into LHS of a substitute (for quick search and replace)
 nmap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
@@ -48,6 +35,7 @@ vnoremap ,c :call NERDComment(0,"toggle")<CR>
 " fix for fat fingering 
 :command WQ wq
 :command Wq wq
+:command Qa qa
 :command W w
 :command Q q
 
