@@ -2,6 +2,7 @@
 *~
 *.swp
 Session.vim
+.netrwhist
 tags
 tags-js
 .tern-project
