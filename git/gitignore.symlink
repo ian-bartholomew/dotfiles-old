@@ -3,4 +3,6 @@
 *.swp
 Session.vim
 tags
+tags-js
 .tern-project
+.tern-port
