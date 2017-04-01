@@ -50,6 +50,11 @@ There's a few special files in the hierarchy.
 Run this:
 
 ```sh
+# install homebrew first
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# install git 
+brew install git
+# clone the repo
 git clone https://github.com/ian-bartholomew/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 script/bootstrap
