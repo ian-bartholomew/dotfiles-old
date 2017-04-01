@@ -10,6 +10,7 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'exu/pgsql.vim'
 Plug 'godlygeek/tabular'
+Plug 'flazz/vim-colorschemes'
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'junegunn/vim-easy-align'
