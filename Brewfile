@@ -2,6 +2,7 @@ cask_args appdir: '/Applications'
 
 brew 'ack'
 brew 'coreutils'
+brew 'docker'
 brew 'findutils'
 brew 'go'
 brew 'node'
