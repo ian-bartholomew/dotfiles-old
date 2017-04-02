@@ -6,9 +6,12 @@ brew 'findutils'
 brew 'go'
 brew 'node'
 brew 'openssl'
+brew 'python', args: ['with-brewed-openssl']
+brew 'python3', args: ['with-brewed-openssl']
+brew 'reattach-to-user-namespace'
 brew 'tig'
 brew 'tmux'
-brew 'vim'
+brew 'vim', args: ['with-lua']
 brew 'wget'
 brew 'yarn'
 
