@@ -15,6 +15,14 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" use jk to exit insert mode
+:imap jk <Esc>
+
+" hh to generate new horizontal split
+nnoremap <silent> hh <C-w>s
+" vv to generate new vertical split
+nnoremap <silent> vv <C-w>v
+
 " Lets break some bad habits
 noremap <Up> <NOP>
 noremap <Down> <NOP>
