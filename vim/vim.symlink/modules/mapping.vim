@@ -19,7 +19,7 @@ nnoremap <C-l> <C-w>l
 :imap jk <Esc>
 
 " hh to generate new horizontal split
-nnoremap <silent> hh <C-w>s
+"nnoremap <silent> hs <C-w>s
 " vv to generate new vertical split
 nnoremap <silent> vv <C-w>v
 

@@ -1,6 +1,12 @@
 "*":
   "atom-beautify":
     _analyticsUserId: "9df960d8-9f3e-4876-b989-9685b178bb3f"
+  "atom-ctags":
+    autoBuildTagsWhenActive: true
+    cmd: "ctags"
+    cmdArgs: "-R --exclude=.git --exclude=log --exclude=app/assets --exclude=vendor --exclude=node_modules"
+  "autocomplete-ruby":
+    rsensePath: "/usr/local/opt/rbenv/shims/rsense"
   core:
     customFileTypes:
       "source.ini": [
@@ -18,8 +24,11 @@
       "exception-reporting"
       "metrics"
       "jshint"
-      "tree-view"
       "linter-jshint"
+      "rails-transporter"
+      "linter-rubocop"
+      "symbols-view"
+      "vim-mode-plus"
     ]
     followSymlinks: false
     hideGitIgnoredFiles: true
@@ -31,9 +40,10 @@
       "tmp"
       "vendor"
     ]
+    telemetryConsent: "limited"
     themes: [
       "spacegray-dark-ui"
-      "atom-dark-fusion-syntax"
+      "one-spacegrey-syntax"
     ]
   editor:
     fontFamily: "Menlo"
@@ -43,12 +53,15 @@
     softWrapAtPreferredLineLength: true
   "file-watcher":
     promptWhenFileHasChangedOnDisk: false
-  linter:
-    errorPanelHeight: 145
+  linter: {}
   "linter-eslint":
     useGlobalEslint: true
   "linter-jshint":
     executablePath: "/usr/local/bin/jshint"
+  "linter-rubocop":
+    command: "/usr/local/opt/rbenv/shims/rubocop"
+  "linter-ui-default":
+    showPanel: true
   nuclide:
     "nuclide-arcanist": {}
     "nuclide-buck-files": {}

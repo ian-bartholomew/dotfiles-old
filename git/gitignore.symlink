@@ -5,6 +5,7 @@ Session.vim
 .netrwhist
 tags
 tags-js
+.tags
 .tern-project
 .tern-port
 .localrc

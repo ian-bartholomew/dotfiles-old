@@ -63,6 +63,11 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/node
   zgen oh-my-zsh plugins/python
+  zgen oh-my-zsh plugins/redis-cli
+  zgen oh-my-zsh plugins/rake
+  zgen oh-my-zsh plugins/ruby
+  zgen oh-my-zsh plugins/rbenv
+  zgen oh-my-zsh plugins/tig
   zgen oh-my-zsh plugins/yarn
   
   zgen load chrissicool/zsh-256color

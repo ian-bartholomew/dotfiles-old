@@ -32,7 +32,6 @@ set noswapfile                   " Same, swappy
 set nowrap                       " Turn on line wrapping.
 set nowritebackup                " And again.
 set number                       " Show line numbers.
-set relativenumber               " Show relative line numbers.
 set ruler                        " Show cursor position.
 set scrolloff=3                  " Show 3 lines of context around the cursor.
 set shiftwidth=2                 " And again, related.
@@ -43,7 +42,7 @@ set smartcase                    " But case-sensitive if expression contains a c
 set tabstop=2                    " Global tab width.
 set title                        " Set the terminal's title
 set visualbell                   " No beeping.
-set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildignore=*.swp,*.bak,*.pyc,*.class,application.js
 set wildmenu                     " Enhanced command line completion.
 set wildmode=list:longest        " Complete files like a shell.
 
@@ -51,3 +50,11 @@ set wildmode=list:longest        " Complete files like a shell.
 set list
 set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set showbreak=↪
+
+" Triming whitespace
+fun! TrimWhitespace()
+  let l:save = winsaveview()
+  %s/\s\+$//e
+  call winrestview(l:save)
+endfun
+autocmd BufWritePre * :call TrimWhitespace()
