@@ -2,9 +2,9 @@ set nocompatible                 " be iMproved, required
 
 syntax enable                    " Turn on syntax highlighting.
 
-filetype on
-filetype plugin on
 filetype plugin indent on        " Turn on file type detection.
+"filetype plugin on
+filetype on
 
 set autoindent                   " Use autoindent
 set autoread                     " Manually refresh file
@@ -58,3 +58,4 @@ fun! TrimWhitespace()
   call winrestview(l:save)
 endfun
 autocmd BufWritePre * :call TrimWhitespace()
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
