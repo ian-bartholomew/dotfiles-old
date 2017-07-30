@@ -1,6 +1,8 @@
 "*":
   "atom-beautify":
     _analyticsUserId: "9df960d8-9f3e-4876-b989-9685b178bb3f"
+    general:
+      _analyticsUserId: "b9ef1124-b3a5-4b5c-a882-b593bb8edb55"
   "atom-ctags":
     autoBuildTagsWhenActive: true
     cmd: "ctags"
