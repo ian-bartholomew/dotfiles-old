@@ -43,7 +43,7 @@ done
 
 # Start powerline
 powerline-daemon -q
-. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
 unset config_files
 
@@ -55,7 +55,7 @@ if ! zgen saved; then
   echo "Creating a zgen save"
 
   zgen oh-my-zsh
-  
+
   # plugins
   zgen oh-my-zsh plugins/aws
   zgen oh-my-zsh plugins/brew
@@ -69,7 +69,7 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/rbenv
   zgen oh-my-zsh plugins/tig
   zgen oh-my-zsh plugins/yarn
-  
+
   zgen load chrissicool/zsh-256color
   zgen load supercrabtree/k
 

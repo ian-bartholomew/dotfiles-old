@@ -2,6 +2,13 @@
 #  React snippets
 #
 
+snippet nue "no unused expressions"
+// eslint-disable-next-line no-unused-expressions
+endsnippet
+
+snippet cn "className"
+className=$1
+endsnippet
 snippet cdm "component did mount" b
 componentDidMount() {
 	${1}
@@ -48,36 +55,45 @@ snippet fup
 forceUpdate(${1:callback});
 endsnippet
 
-snippet gdp "get default props" b
-getDefaultProps() {
-	return {
-		${1}
-	};
-}$0
+snippet pt "propTypes"
+static propTypes = {
+  ${1}
+};
 endsnippet
-
-snippet gis "get initial state" b
-getInitialState() {
-	return {
-		${1}: ${2}
-	};
-}$0
+snippet dp "default props"
+static defaultProps = {
+  ${1}
+};
 endsnippet
 
 snippet jsx "define jsx dom" b
-import React from 'react';
+import React from "react";
 
 class ${1:ClassName} extends React.Component {
-	render() {
-		return (
-			${VISUAL}$4
-		)
-	}
+  static propTypes = {};
+
+  render() {
+    return (
+      ${VISUAL}$4
+    )
+  }
 }
 
-$1.propTypes = {};
-
 export default $1;$0
+endsnippet
+
+snippet rsc "react stateless component"
+import React from "react";
+
+const ${1:ClassName} = (props) => {
+  return(
+    $2
+  );
+};
+
+$1.propTypes ={};
+
+export default $1;
 endsnippet
 
 snippet ren
@@ -112,86 +128,74 @@ snippet trp
 this.transferPropsTo(${VISUAL}$0);
 endsnippet
 
-snippet jest
-import React from 'react';
-import { shallow } from 'enzyme';
-import ${1:Component} from './$1';
-
-it('renders without crashing', () => {
-  shallow(<$1 />);
-});
+snippet ipt "import PropTypes"
+import PropTypes from "prop-types";
 endsnippet
 
-snippet it
-it('${1}', () => {
-	${2}
-});
-endsnippet
-
-snippet pt "React.PropTypes"
+snippet pt "PropTypes"
 $1.propTypes = {
 	$2
 };
 endsnippet
 
-snippet ptf "React.PropTypes.function"
-React.PropTypes.func,$0
+snippet ptf "PropTypes.function"
+PropTypes.func,$0
 endsnippet
 
-snippet ptfr "React.PropTypes.required function"
-React.PropTypes.func.isRequired,$0
+snippet ptfr "PropTypes.required function"
+PropTypes.func.isRequired,$0
 endsnippet
 
-snippet ptar "React.PropTypes.required array"
-React.PropTypes.array.isRequired,$0
+snippet ptar "PropTypes.required array"
+PropTypes.array.isRequired,$0
 endsnippet
 
-snippet pta "React.PropTypes.array"
-React.PropTypes.array,$0
+snippet pta "PropTypes.array"
+PropTypes.array,$0
 endsnippet
 
-snippet ptb "React.PropTypes.boolean"
-React.PropTypes.bool,$0
+snippet ptb "PropTypes.boolean"
+PropTypes.bool,$0
 endsnippet
 
-snippet ptbr "React.PropTypes.required boolean"
-React.PropTypes.bool.isRequired,$0
+snippet ptbr "PropTypes.required boolean"
+PropTypes.bool.isRequired,$0
 endsnippet
 
-snippet pts "React.PropTypes.string"
-React.PropTypes.string,$0
+snippet pts "PropTypes.string"
+PropTypes.string,$0
 endsnippet
 
-snippet ptsr "React.PropTypes.required string"
-React.PropTypes.string.isRequired,$0
+snippet ptsr "PropTypes.required string"
+PropTypes.string.isRequired,$0
 endsnippet
 
-snippet ptn "React.PropTypes.number"
-React.PropTypes.number,$0
+snippet ptn "PropTypes.number"
+PropTypes.number,$0
 endsnippet
 
-snippet ptnr "React.PropTypes.required number"
-React.PropTypes.number.isRequired,$0
+snippet ptnr "PropTypes.required number"
+PropTypes.number.isRequired,$0
 endsnippet
 
-snippet pto "React.PropTypes.object"
-React.PropTypes.object,$0
+snippet pto "PropTypes.object"
+PropTypes.object,$0
 endsnippet
 
-snippet ptor "React.PropTypes.required object"
-React.PropTypes.object.isRequired,$0
+snippet ptor "PropTypes.required object"
+PropTypes.object.isRequired,$0
 endsnippet
 
-snippet	ptaof "React.PropTypes.arrayOf"
-React.PropTypes.arrayOf($1),
+snippet	ptaof "PropTypes.arrayOf"
+PropTypes.arrayOf($1),
 endsnippet
 
-snippet	ptoof "React.PropTypes.objectOf"
-React.PropTypes.objectOf($1),
+snippet	ptoof "PropTypes.objectOf"
+PropTypes.objectOf($1),
 endsnippet
 
-snippet	ptsh "React.PropTypes.shape"
-React.PropTypes.shape({
+snippet	ptsh "PropTypes.shape"
+PropTypes.shape({
 	$1: $2
 })
 endsnippet

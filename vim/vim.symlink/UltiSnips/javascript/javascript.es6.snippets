@@ -14,7 +14,7 @@ let ${1} = ${0};
 endsnippet
 
 snippet im
-import ${1} from '${0}';
+import ${1} from "${0}";
 endsnippet
 
 snippet cla
@@ -28,6 +28,10 @@ snippet forof
 for (let ${1:s} of ${2:sequence}) {
 	${3}
 }
+endsnippet
+
+snippet fe
+forEach(() => {$1});
 endsnippet
 
 snippet clax

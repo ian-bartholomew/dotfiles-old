@@ -16,6 +16,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'elzr/vim-json', { 'for': [ 'json', 'javascript', 'jsx', 'javascript.jsx' ] }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+Plug 'joegesualdo/jsdoc.vim'
 Plug 'jordwalke/AutoComplPop'
 Plug 'jordwalke/VimCompleteLikeAModernEditor'
 Plug 'junegunn/vim-easy-align'

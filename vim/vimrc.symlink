@@ -2,6 +2,8 @@
 
 set nocompatible
 filetype on
+filetype plugin on
+filetype plugin indent on
 syntax on
 syntax enable           " enable syntax processing
 set autoread                     " Manually refresh file
@@ -9,6 +11,7 @@ set backspace=indent,eol,start   " Intuitive backspacing.
 set clipboard=unnamed            " Normal OS clipboard interaction
 set copyindent                   " Copy the last indent on autoindent
 set eol                          " Add new line to end of file on save
+set hidden              " allow buffers to be hidden and not saved
 set history=100         " only remember 100 commands
 set hlsearch            " highlight matches
 set ignorecase          " ignore case when searching
@@ -23,13 +26,14 @@ set smartcase           " ignore case if search pattern is all lowercase,
 set title                " change the terminal's title
 set ttyfast             " send more chars to the term at once
 set visualbell           " don't beep
-set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildignore=*.swp,*.bak,*.pyc,*.class,*/tmp/*,*.so,*.swp,*.zip
 set wildmenu            " visual autocomplete for command menu
 
 " ---- Indentation ------
 
 filetype indent on      " load filetype-specific indent files
 set expandtab           " tabs are spaces
+set shiftwidth=2        " when using > < or =
 set softtabstop=2       " number of spaces in tab when editing
 set tabstop=2           " number of visual spaces per TAB
 set smartindent
@@ -37,25 +41,25 @@ set autoindent
 
 " ------ Theme ---------
 
-colorscheme Tomorrow-Night
-set t_Co=256                      " Use 256 Colors
 set background=dark
-set guifont=Menlo\ Regular:h18
-set colorcolumn=90
+" colors deus
+" colorscheme gruvbox
+colorscheme darcula
+set t_Co=256                      " Use 256 Colors
+" set guifont=Menlo\ Regular:h18
+" set colorcolumn=90
 set number
-set cursorcolumn                 " add a vertical cursor highlight
+" set cursorcolumn                 " add a vertical cursor highlight
 set cursorline          " highlight current line
 set showmatch           " highlight matching [{()}]
 " highlight white spaces
-set list
+" set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
-let g:airline_theme='gruvbox'
 
 " Useful status information at bottom of screen
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
@@ -74,43 +78,59 @@ set foldmethod=indent   " fold based on indent level
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'MattesGroeger/vim-bookmarks'
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
+Plug '1995eaton/vim-better-javascript-completion', { 'for': [ 'javascript', 'jsx', 'javascript.jsx']}
+Plug 'ajmwagar/vim-deus'
 Plug 'alvan/vim-closetag'
 Plug 'cakebaker/scss-syntax.vim', {'for': 'scss'}
+Plug 'blueshirts/darcula'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'elzr/vim-json', { 'for': 'json' }
+"Plug 'leshill/vim-json'
+Plug 'elzr/vim-json'
+Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
 Plug 'jordwalke/AutoComplPop'
+" Plug 'othree/AutoComplPop'
 Plug 'jordwalke/VimCompleteLikeAModernEditor'
 Plug 'junegunn/vim-easy-align'
 Plug 'kchmck/vim-coffee-script', {'for': ['coffee'] }
 Plug 'kien/ctrlp.vim'
+Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
-Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'morhetz/gruvbox'
-Plug 'mxw/vim-jsx', { 'for': [ 'jsx', 'javascript' ] }
+Plug 'moll/vim-node', { 'for': 'javascript'}
+"Plug 'MaxMEllon/vim-jsx-pretty'
+"Plug 'chemzqm/vim-jsx-improve'
+"Plug 'neoclide/vim-jsx-improve', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx'
 Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
-Plug 'othree/es.next.syntax.vim', {'for': 'javascript'}
 Plug 'othree/html5.vim', { 'for': ['html', 'css']}
-Plug 'othree/jsdoc-syntax.vim', { 'for': 'javascript' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'othree/jsdoc-syntax.vim'
+Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
+Plug 'ruanyl/vim-fixmyjs', { 'for': 'javascript'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
+Plug 'tonekk/vim-ruby-capybara', { 'for': 'ruby' }
 Plug 'tpope/vim-endwise', {'for': 'ruby'}
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rails', {'for': 'ruby'},
+"Plug 'tpope/vim-rails', {'for': 'ruby'},
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-syntastic/syntastic'
 Plug 'vim-ruby/vim-ruby', {'for': 'ruby'},
 Plug 'vim-scripts/BufOnly.vim'
-Plug 'w0rp/ale', {'for': ['javascript', 'python', 'ruby', 'coffee']},
+Plug 'w0ng/vim-hybrid'
+Plug 'w0rp/ale',
+"Plug 'xolox/vim-easytags',
+Plug 'xolox/vim-misc',
 
 
 " Initialize plugin system
@@ -135,6 +155,12 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" NERDCommenter
+nnoremap ,c :call NERDComment(0,"toggle")<CR>
+vnoremap ,c :call NERDComment(0,"toggle")<CR>
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDDCompactSexComs = 1
 
 " hh to generate new horizontal split
 "nnoremap <silent> hs <C-w>s
@@ -166,7 +192,14 @@ nmap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 " ------ AutoCmd ----------
 " Auto clear whitespaces on save
 autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufNewFile,BufRead *.scss set ft=scss.css
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
+" ------ FileType --------
+augroup filetypedetect
+  au FileType qf wincmd J
+  au BufRead,BufNewFile *.cjsx setfiletype coffee
+augroup END
 
 "--------- PLUGIN OPTS ---------
 
@@ -185,6 +218,7 @@ nmap ,n :NERDTreeFind<CR>
 nmap ,m :NERDTreeToggle<CR>
 
 " VimCompleteLikeAModernEditor
+set completeopt=menuone
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -199,34 +233,33 @@ noremap <leader>a :Ack<space>
 noremap <leader>as :Ack <C-r><C-w>
 
 " Airline status line
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+" let g:airline_theme='gruvbox'
 let g:airline_theme='minimalist'
 
-function ALE() abort
-  return exists('*ALEGetStatusLine') ? ALEGetStatusLine() : ''
-endfunction
-let g:airline_section_error = '%{ALE()}'
-
-" ALE
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-
-" Write this in your vimrc file
-let g:ale_lint_on_text_changed = 'never'
-" You can disable this option too
-" if you don't want linters to run on opening a file
-let g:ale_lint_on_enter = 0
+"" ALE
+let g:airline#extensions#ale#enabled = 1
+"let g:ale_set_loclist = 0
+" let g:ale_set_quickfix = 1
+let g:ale_fixers = {
+\   'javascript': [
+\       'eslint'
+\   ],
+\   'scss': [ 'stylelint' ]
+\}
 
 " ctrlp plugin
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_working_path_mode = '0'
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore ='.DS_Store\|.sass-cache\|bower_components\|node_modules\|\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_max_files = 0
+let g:ctrlp_custom_ignore ='pdf\|tmp\|.DS_Store\|.sass-cache\|lcov-report\|bower_components\|cache-loader\|capistrano\|circle-ci\|github\|vscode\|log\|node_modules\|\v[\/]\.(git|hg|svn)$'
 
 "nmap [ :CtrlP<CR>
 nmap - :CtrlP<CR>
-nmap ] :CtrlPBuffer<CR>]
+nmap _ :CtrlPBuffer<CR>
 
 " Deliminate
 au FileType eruby let b:delimitMate_autoclose = 0
@@ -246,3 +279,39 @@ nmap ga <Plug>(EasyAlign)
 " vim-closetag filenames
 let g:closetag_filenames = "*.cjsx,*.html,*.xhtml,*.phtml,*.jsx,*.js,*.erb"
 
+" vim-jsx
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files"
+
+" vim-json
+let g:vim_json_syntax_conceal = 0
+
+" vim-prettier
+let g:prettier#exec_cmd_async = 1
+" when running at every change you may want to disable quickfix
+let g:prettier#quickfix_enabled = 0
+" run before save async
+let g:prettier#autoformat = 0
+
+" single quotes over double quotes
+let g:prettier#config#single_quote = 'false'
+let g:prettier#config#trailing_comma = 'es5'
+let g:prettier#config#bracket_spacing = 'true'
+
+"autocmd BufWritePre *.js,*.jsx,*.json PrettierAsync
+
+" fixmyjs
+let g:fixmyjs_rc_filename = ['.eslintrc', '.eslintrc.json']
+noremap <Leader>f :Fixmyjs<CR>
+
+" jsdoc
+nmap <silent> <C-d> <Plug>(jsdoc)
+
+" TagBar
+noremap <Leader>t :TagbarToggle<CR>
+
+" vim-easytags
+set tags=./tags;
+let g:easytags_dynamic_files = 1
+
+" pangloss javascript
+let g:javascript_plugin_jsdoc = 1

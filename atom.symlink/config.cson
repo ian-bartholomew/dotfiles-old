@@ -7,16 +7,17 @@
     autoBuildTagsWhenActive: true
     cmd: "ctags"
     cmdArgs: "-R --exclude=.git --exclude=log --exclude=app/assets --exclude=vendor --exclude=node_modules"
-  "autocomplete-ruby":
-    rsensePath: "/usr/local/opt/rbenv/shims/rsense"
+  "autocomplete-ruby": {}
   core:
     customFileTypes:
       "source.ini": [
         ".buckconfig"
         ".flowconfig"
+        ".hgrc"
       ]
       "source.json": [
         ".arcconfig"
+        "BUCK.autodeps"
       ]
       "source.python": [
         "BUCK"
@@ -30,7 +31,8 @@
       "rails-transporter"
       "linter-rubocop"
       "symbols-view"
-      "vim-mode-plus"
+      "linter"
+      "tree-view"
     ]
     followSymlinks: false
     hideGitIgnoredFiles: true
@@ -63,7 +65,7 @@
   "linter-rubocop":
     command: "/usr/local/opt/rbenv/shims/rubocop"
   "linter-ui-default":
-    showPanel: true
+    panelHeight: 226
   nuclide:
     "nuclide-arcanist": {}
     "nuclide-buck-files": {}
@@ -90,5 +92,6 @@
       "source.gfm"
       "text.git-commit"
     ]
+  "vim-mode-plus": {}
   welcome:
     showOnStartup: false
