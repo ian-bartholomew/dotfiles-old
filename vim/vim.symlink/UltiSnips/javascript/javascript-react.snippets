@@ -116,11 +116,11 @@ shouldComponentUpdate(nextProps, nextState) {
 }$0
 endsnippet
 
-snippet props "get property" i
+snippet tp "get property" i
 this.props.${1}
 endsnippet
 
-snippet state "get state" i
+snippet ts "get state" i
 this.state.${1}
 endsnippet
 
@@ -198,4 +198,26 @@ snippet	ptsh "PropTypes.shape"
 PropTypes.shape({
 	$1: $2
 })
+endsnippet
+
+snippet svg "SVG"
+/* eslint react/prop-types: 0 */
+/* prop-types are defined in IconWrapper */
+
+import React from "react";
+import IconWrapper from "./IconWrapper";
+
+const aspectRatio = 1;
+
+const $1 = props => (
+  $2
+);
+
+$1.defaultProps = {
+  width: "",
+  height: "",
+};
+
+export default IconWrapper($1);
+
 endsnippet
