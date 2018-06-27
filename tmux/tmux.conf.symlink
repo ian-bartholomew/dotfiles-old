@@ -1,4 +1,4 @@
-source '/usr/local/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf'
+# source '/usr/local/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf'
 #source /usr/local/lib/python2.7/site-packages/powerline/bindings/tmux/powerline_tmux_2.1_plus.conf
 
 #set -g status-right '#(/usr/local/bin/powerline tmux right)'
@@ -15,8 +15,8 @@ set -g mouse on
 
 set -g default-command "reattach-to-user-namespace $SHELL --login"
 # tmux display things in 256 colors
-#set -g default-terminal "screen-256color"
-set -g default-terminal 'xterm'
+set -g default-terminal "screen-256color"
+# set -g default-terminal 'xterm'
 
 # remap prefix from C-b to C-a
 unbind C-b
