@@ -12,3 +12,5 @@ atom.symlink/storage
 atom.symlink/themes
 
 git/gitconfig.symlink
+
+zsh/config.symlink/configstore/*
