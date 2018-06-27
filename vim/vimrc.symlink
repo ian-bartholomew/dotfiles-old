@@ -10,6 +10,7 @@ set autoread                     " Manually refresh file
 set backspace=indent,eol,start   " Intuitive backspacing.
 set clipboard=unnamed            " Normal OS clipboard interaction
 set copyindent                   " Copy the last indent on autoindent
+set encoding=UTF-8
 set eol                          " Add new line to end of file on save
 set hidden              " allow buffers to be hidden and not saved
 set history=100         " only remember 100 commands
@@ -72,12 +73,16 @@ set foldenable          " enable folding
 set foldlevelstart=10   " open most folds by default
 set foldnestmax=10      " 10 nested fold max
 set foldmethod=indent   " fold based on indent level
-
+" fold top level functions
+nnoremap <silent> <leader>z :let&l:fdl=indent('.')/&sw<cr>
+" space open/closes folds
+nnoremap <space> za
 
 " ------ Plugins ---------
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'Chiel92/vim-autoformat'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
@@ -97,7 +102,7 @@ Plug 'jordwalke/AutoComplPop'
 Plug 'jordwalke/VimCompleteLikeAModernEditor'
 Plug 'junegunn/vim-easy-align'
 Plug 'kchmck/vim-coffee-script', {'for': ['coffee'] }
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'morhetz/gruvbox'
@@ -113,13 +118,15 @@ Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
 Plug 'ruanyl/vim-fixmyjs', { 'for': 'javascript'}
+Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': [ 'javascript', 'jsx', 'javascript.jsx' ] }
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tonekk/vim-ruby-capybara', { 'for': 'ruby' }
 Plug 'tpope/vim-endwise', {'for': 'ruby'}
 Plug 'tpope/vim-fugitive'
-"Plug 'tpope/vim-rails', {'for': 'ruby'},
+Plug 'tpope/vim-rails', {'for': 'ruby'},
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -142,8 +149,6 @@ call plug#end()
 map <leader>sv :source ~/.vimrc<CR>
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
-" space open/closes folds
-nnoremap <space> za
 
 " call cx + co for omnicompletion
 inoremap <C-Space> <C-x><C-o>
@@ -194,11 +199,15 @@ nmap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 autocmd BufWritePre * :%s/\s\+$//e
 autocmd BufNewFile,BufRead *.scss set ft=scss.css
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" spell check
+autocmd BufRead,BufNewFile *.md setlocal spell
+autocmd FileType gitcommit setlocal spell
 
 " ------ FileType --------
 augroup filetypedetect
   au FileType qf wincmd J
   au BufRead,BufNewFile *.cjsx setfiletype coffee
+  au BufWrite *.rb :Autoformat
 augroup END
 
 "--------- PLUGIN OPTS ---------
@@ -244,11 +253,13 @@ let g:airline#extensions#ale#enabled = 1
 " let g:ale_set_quickfix = 1
 let g:ale_fixers = {
 \   'javascript': [
-\       'eslint'
+\       'prettier'
 \   ],
 \   'scss': [ 'stylelint' ]
 \}
-
+let g:ale_fix_on_save = 1
+let g:ale_javascript_prettier_options = '--trailing-comma es5'
+noremap <leader>p :ALEFix<cr>
 " ctrlp plugin
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_match_window = 'bottom,order:ttb'
@@ -308,6 +319,16 @@ nmap <silent> <C-d> <Plug>(jsdoc)
 
 " TagBar
 noremap <Leader>t :TagbarToggle<CR>
+let g:tagbar_type_ruby = {
+    \ 'kinds' : [
+        \ 'm:modules',
+        \ 'c:classes',
+        \ 'd:describes',
+        \ 'C:contexts',
+        \ 'f:methods',
+        \ 'F:singleton methods'
+    \ ]
+\ }
 
 " vim-easytags
 set tags=./tags;
