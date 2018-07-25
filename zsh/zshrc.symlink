@@ -1,5 +1,6 @@
 # shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/.dotfiles
+export DOTFILES=$HOME/.dotfiles
+export ZSH=$DOTFILES/zsh
 
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Code
@@ -16,11 +17,11 @@ then
 fi
 
 # load everything but the path and completion files
-source $ZSH/zsh/aliases.zsh
-source $ZSH/zsh/config.zsh
-source $ZSH/zsh/fpath.zsh
-source $ZSH/zsh/prompt.zsh
-source $ZSH/zsh/window.zsh
+source $ZSH/aliases.zsh
+source $ZSH/config.zsh
+source $ZSH/fpath.zsh
+source $ZSH/prompt.zsh
+source $ZSH/window.zsh
 
 # initialize autocomplete here, otherwise functions won't be loaded
 # On slow systems, checking the cached .zcompdump file to see if it must be
@@ -36,12 +37,13 @@ source $ZSH/zsh/window.zsh
 autoload -Uz compinit
 if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
   compinit
+  compdump
 else
   compinit -C
 fi
 
 # load every completion after autocomplete loads
-source $ZSH/zsh/completion.zsh
+source $ZSH/completion.zsh
 
 # # Start powerline
 powerline-daemon -q
@@ -80,3 +82,4 @@ if ! zgen saved; then
   zgen save
 
 fi
+
