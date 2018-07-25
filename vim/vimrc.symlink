@@ -110,7 +110,9 @@ Plug 'moll/vim-node', { 'for': 'javascript'}
 "Plug 'MaxMEllon/vim-jsx-pretty'
 "Plug 'chemzqm/vim-jsx-improve'
 "Plug 'neoclide/vim-jsx-improve', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx'
+Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript', 'javascript.jsx', 'jsx']}
+Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
+" Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx', 'jsx']}
 Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
 Plug 'othree/html5.vim', { 'for': ['html', 'css']}
 Plug 'othree/jsdoc-syntax.vim'
@@ -134,6 +136,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-ruby/vim-ruby', {'for': 'ruby'},
 Plug 'vim-scripts/BufOnly.vim'
+Plug 'vim-scripts/ScrollColors'
 Plug 'w0ng/vim-hybrid'
 Plug 'w0rp/ale',
 "Plug 'xolox/vim-easytags',
