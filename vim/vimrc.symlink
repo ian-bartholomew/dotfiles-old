@@ -86,6 +86,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
+Plug 'Valloric/YouCompleteMe'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug '1995eaton/vim-better-javascript-completion', { 'for': [ 'javascript', 'jsx', 'javascript.jsx']}
@@ -94,15 +95,18 @@ Plug 'alvan/vim-closetag'
 Plug 'cakebaker/scss-syntax.vim', {'for': 'scss'}
 Plug 'blueshirts/darcula'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-"Plug 'leshill/vim-json'
+Plug 'ervandew/supertab'
+Plug 'hashivim/vim-terraform', {'for': 'terraform'}
+Plug 'leshill/vim-json'
 Plug 'elzr/vim-json'
 Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
-Plug 'jordwalke/AutoComplPop'
+" Plug 'jordwalke/AutoComplPop'
 " Plug 'othree/AutoComplPop'
-Plug 'jordwalke/VimCompleteLikeAModernEditor'
+" Plug 'jordwalke/VimCompleteLikeAModernEditor'
 Plug 'junegunn/vim-easy-align'
 Plug 'kchmck/vim-coffee-script', {'for': ['coffee'] }
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'gabrielelana/vim-markdown', {'for': 'markdown'}
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'morhetz/gruvbox'
@@ -121,6 +125,7 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
 Plug 'ruanyl/vim-fixmyjs', { 'for': 'javascript'}
 Plug 'ryanoasis/vim-devicons'
+Plug 'suan/vim-instant-markdown', { 'for': 'markdown'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': [ 'javascript', 'jsx', 'javascript.jsx' ] }
@@ -211,15 +216,10 @@ augroup filetypedetect
   au FileType qf wincmd J
   au BufRead,BufNewFile *.cjsx setfiletype coffee
   au BufWrite *.rb :Autoformat
+  au BufWritePre *.tf :TerraformFmt
 augroup END
 
 "--------- PLUGIN OPTS ---------
-
-" Plugin 'SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UlltSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 
 " Plugin NERDTree
 
@@ -229,8 +229,12 @@ let NERDTreeIgnore=['\.pyc$', '\~$']
 nmap ,n :NERDTreeFind<CR>
 nmap ,m :NERDTreeToggle<CR>
 
-" VimCompleteLikeAModernEditor
-set completeopt=menuone
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -339,3 +343,6 @@ let g:easytags_dynamic_files = 1
 
 " pangloss javascript
 let g:javascript_plugin_jsdoc = 1
+
+" instant markdown
+let g:instant_markdown_autostart = 0
