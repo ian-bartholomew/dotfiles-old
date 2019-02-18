@@ -5,7 +5,11 @@ snippet #! "shebang"
 endsnippet
 
 snippet vreq "assign a CommonJS-style module to a var"
-var ${0:${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/\u$2/g}} = require('${1}');
+const ${0:${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/\u$2/g}} = require('${1}');
+endsnippet
+
+snippet me "module.exports"
+module.exports.${1} = ${2};
 endsnippet
 
 snippet ex "module.exports"
