@@ -86,8 +86,9 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --ts-completer' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug '1995eaton/vim-better-javascript-completion', { 'for': [ 'javascript', 'jsx', 'javascript.jsx']}
 Plug 'ajmwagar/vim-deus'
@@ -95,7 +96,7 @@ Plug 'alvan/vim-closetag'
 Plug 'cakebaker/scss-syntax.vim', {'for': 'scss'}
 Plug 'blueshirts/darcula'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 Plug 'hashivim/vim-terraform', {'for': 'terraform'}
 Plug 'leshill/vim-json'
 Plug 'elzr/vim-json'
@@ -106,8 +107,9 @@ Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
 Plug 'junegunn/vim-easy-align'
 Plug 'kchmck/vim-coffee-script', {'for': ['coffee'] }
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'gabrielelana/vim-markdown', {'for': 'markdown'}
-Plug 'majutsushi/tagbar'
+" Plug 'gabrielelana/vim-markdown', {'for': 'markdown'}
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'morhetz/gruvbox'
 Plug 'moll/vim-node', { 'for': 'javascript'}
@@ -123,14 +125,17 @@ Plug 'othree/jsdoc-syntax.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
+Plug 'ruanyl/coverage.vim', { 'for': 'javascript'}
 Plug 'ruanyl/vim-fixmyjs', { 'for': 'javascript'}
 Plug 'ryanoasis/vim-devicons'
+Plug 'sheerun/vim-polyglot'
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': [ 'javascript', 'jsx', 'javascript.jsx' ] }
+" Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': [ 'javascript', 'jsx', 'javascript.jsx' ] }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tonekk/vim-ruby-capybara', { 'for': 'ruby' }
+Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-endwise', {'for': 'ruby'}
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails', {'for': 'ruby'},
@@ -144,7 +149,6 @@ Plug 'vim-scripts/BufOnly.vim'
 Plug 'vim-scripts/ScrollColors'
 Plug 'w0ng/vim-hybrid'
 Plug 'w0rp/ale',
-"Plug 'xolox/vim-easytags',
 Plug 'xolox/vim-misc',
 
 
@@ -195,11 +199,11 @@ nnoremap <S-Tab> :bprevious<CR>
 nmap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " fix for fat fingering
-:command WQ wq
-:command Wq wq
-:command Qa qa
-:command W w
-:command Q q
+:command! WQ wq
+:command! Wq wq
+:command! Qa qa
+:command! W w
+:command! Q q
 
 
 " ------ AutoCmd ----------
@@ -224,7 +228,7 @@ augroup END
 " Plugin NERDTree
 
 " Ignore .pyc files in NERDTree
-let NERDTreeIgnore=['\.pyc$', '\~$']
+let NERDTreeIgnore=['\.pyc$', '\~$', 'node_modules']
 
 nmap ,n :NERDTreeFind<CR>
 nmap ,m :NERDTreeToggle<CR>
@@ -233,6 +237,7 @@ nmap ,m :NERDTreeToggle<CR>
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:ycm_python_binary_path = 'python'
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -256,14 +261,17 @@ let g:airline_theme='minimalist'
 
 "" ALE
 let g:airline#extensions#ale#enabled = 1
-"let g:ale_set_loclist = 0
-" let g:ale_set_quickfix = 1
 let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': [
-\       'prettier'
+\       'prettier',
+\       'eslint'
 \   ],
 \   'scss': [ 'stylelint' ]
 \}
+let g:ale_open_list = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_options = '--trailing-comma es5'
 noremap <leader>p :ALEFix<cr>
@@ -281,9 +289,6 @@ nmap _ :CtrlPBuffer<CR>
 
 " Deliminate
 au FileType eruby let b:delimitMate_autoclose = 0
-
-" syntastic
-let g:syntastic_python_checkers = ['pylint']
 
 " vim-easy-align
 let g:easy_align_ignore_groups = []
@@ -337,12 +342,19 @@ let g:tagbar_type_ruby = {
     \ ]
 \ }
 
-" vim-easytags
-set tags=./tags;
-let g:easytags_dynamic_files = 1
-
 " pangloss javascript
 let g:javascript_plugin_jsdoc = 1
 
 " instant markdown
 let g:instant_markdown_autostart = 0
+
+" coverage
+let g:coverage_json_report_path = 'coverage/coverage-final.json'
+
+" jsdoc
+let g:jsdoc_enable_es6 = 1
+let g:jsdoc_allow_input_prompt = 1
+let g:jsdoc_input_description = 1
+let g:jsdoc_additional_descriptions	= 1
+let g:jsdoc_return_type	= 0
+let g:jsdoc_return_description = 0
