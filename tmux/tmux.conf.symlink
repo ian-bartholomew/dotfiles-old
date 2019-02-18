@@ -18,6 +18,9 @@ set -g default-command "reattach-to-user-namespace $SHELL --login"
 set -g default-terminal "screen-256color"
 # set -g default-terminal 'xterm'
 
+# renumber windows automattically
+set-option -g renumber-windows on
+
 # remap prefix from C-b to C-a
 unbind C-b
 set-option -g prefix C-a
@@ -131,8 +134,9 @@ set-window-option -g window-status-attr "none"
 set-window-option -g window-status-separator ""
 
 set-option -g status-left "#[fg=colour249, bg=colour241] #S #[fg=colour241, bg=colour237, nobold, noitalics, nounderscore]"
-set-option -g status-right "#[fg=colour239, bg=colour237, nobold, nounderscore, noitalics]#[fg=colour246,bg=colour239] %Y-%m-%d  %H:%M #[fg=colour248, bg=colour239, nobold, noitalics, nounderscore]#[fg=colour256, bg=colour196] ♥ #(~/Scripts/battery.sh) "
+set-option -g status-right "#[fg=colour239, bg=colour237, nobold, nounderscore, noitalics]#[fg=colour246,bg=colour239] %Y-%m-%d  %H:%M #[fg=colour248, bg=colour239, nobold, noitalics, nounderscore]#[fg=colour256, bg=colour196] Batt: #{battery_icon} #{battery_percentage} #{battery_remain} "
 
 set-window-option -g window-status-current-format "#[fg=colour239, bg=colour248, :nobold, noitalics, nounderscore]#[fg=colour239, bg=colour214] #I #[fg=colour239, bg=colour214, bold] #W #[fg=colour214, bg=colour237, nobold, noitalics, nounderscore]"
 set-window-option -g window-status-format "#[fg=colour237,bg=colour239,noitalics]#[fg=colour223,bg=colour239] #I #[fg=colour223, bg=colour239] #W #[fg=colour239, bg=colour237, noitalics]"
 
+run-shell ~/Scripts/battery/battery.tmux
