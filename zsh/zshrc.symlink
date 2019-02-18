@@ -47,7 +47,7 @@ source $ZSH/completion.zsh
 
 # # Start powerline
 powerline-daemon -q
-. /usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+# . /usr/local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # load zgen
 source "${HOME}/.zgen/zgen.zsh"
@@ -63,6 +63,7 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/brew
   zgen oh-my-zsh plugins/docker
   zgen oh-my-zsh plugins/git
+  # zgen oh-my-zsh plugins/npm
   zgen oh-my-zsh plugins/yarn
 
   zgen load chrissicool/zsh-256color
@@ -72,8 +73,9 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-autosuggestions
 
   # completions
-  # zgen load srijanshetty/docker-zsh
+  zgen load srijanshetty/docker-zsh
   zgen load zsh-users/zsh-completions src
+  zgen load lukechilds/zsh-better-npm-completion
 
   # theme
   zgen oh-my-zsh themes/agnoster
@@ -83,3 +85,13 @@ if ! zgen saved; then
 
 fi
 
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/ianbartholomew/.nvm/versions/node/v6.2.2/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/ianbartholomew/.nvm/versions/node/v6.2.2/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/ianbartholomew/.nvm/versions/node/v6.2.2/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/ianbartholomew/.nvm/versions/node/v6.2.2/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/ianbartholomew/Dev/run-the-pass/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/ianbartholomew/Dev/run-the-pass/node_modules/tabtab/.completions/slss.zsh
