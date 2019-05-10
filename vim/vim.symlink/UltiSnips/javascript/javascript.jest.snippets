@@ -31,29 +31,11 @@ expect(wrapper).toMatchSnapshot();
 endsnippet
 
 snippet jest
-import React from 'react';
-import ReactDOM from 'react-dom';
-import "test_helpers/testSetup";
-import { shallow, render } from 'enzyme';
-import ${1:Component} from '../$1';
-
-const a11y = require('react-a11y').default;
+const $1 = require('../$1.js')
 
 describe('$1 test suite', () => {
-  beforeEach(() => {
-    a11y(React, ReactDOM);
-  });
-  afterEach(() => {
-    a11y.restoreAll();
-  });
-
-  it('renders without crashing', () => {
-    shallow(<$1 />);
-  });
-
-  it('matches snapshot', () => {
-    const wrapper = render(<$1 />)
-    expect(wrapper).toMatchSnapshot();
+  it('$2', () => {
+    $3
   });
 });
 endsnippet
