@@ -95,3 +95,5 @@ fi
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /Users/ianbartholomew/Dev/run-the-pass/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/ianbartholomew/Dev/run-the-pass/node_modules/tabtab/.completions/slss.zsh
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/Cellar/terraform/0.11.13/bin/terraform terraform
