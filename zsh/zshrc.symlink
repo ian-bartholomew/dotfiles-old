@@ -76,7 +76,7 @@ if ! zgen saved; then
 
   # theme
   # zgen oh-my-zsh themes/agnoster
-  # zgen load denysdovhan/spaceship-prompt spaceship
+  zgen load denysdovhan/spaceship-prompt spaceship
 
   # save all to init script
   zgen save
@@ -84,22 +84,22 @@ if ! zgen saved; then
 fi
 
 # powerline go
-function powerline_precmd() {
-  PS1="$($GOPATH/bin/powerline-go -error $? -shell zsh -modules "nix-shell,user,cwd,perms,git,exit,aws,docker,terraform-workspace")"
-}
+# function powerline_precmd() {
+#   eval "$($GOPATH/bin/powerline-go -error $? -shell zsh -theme $GOPATH/src/github.com/justjanne/powerline-go/themes/powerlevel9k.json -eval -modules "nix-shell,user,cwd,perms,git,exit" -modules-right "aws,docker,terraform-workspace")"
+# }
 
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-    done
-    precmd_functions+=(powerline_precmd)
-}
+# function install_powerline_precmd() {
+#   for s in "${precmd_functions[@]}"; do
+#     if [ "$s" = "powerline_precmd" ]; then
+#       return
+#     fi
+#     done
+#     precmd_functions+=(powerline_precmd)
+# }
 
-if [ "$TERM" != "linux" ]; then
-  install_powerline_precmd
-fi
+# if [ "$TERM" != "linux" ]; then
+#   install_powerline_precmd
+# fi
 
 
 
