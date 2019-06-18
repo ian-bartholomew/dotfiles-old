@@ -99,3 +99,15 @@ provisioner "${1:name}" {
 }
 endsnippet
 
+snippet ssm "ssm parameter"
+resource "aws_ssm_parameter" "$1" {
+  name  = "/${terraform.workspace}/$1"
+  type  = "SecureString"
+  value = "${var.$1}"
+
+  tags = {
+    Stage     = "${terraform.workspace}"
+    ManagedBy = "terraform"
+  }
+}
+endsnippet
