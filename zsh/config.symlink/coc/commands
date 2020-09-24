@@ -1,0 +1,6 @@
+prettier.formatFile
+jest.init
+jest.singleTest
+jest.projectTest
+python.jediEnabled
+python.setInterpreter

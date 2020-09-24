@@ -1,9 +1,10 @@
+# zmodload zsh/zprof
 # shortcut to this dotfiles path is $ZSH
 export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh
 
 # your project folder that we can `c [tab]` to
-export PROJECTS=~/Code
+export PROJECTS=~/Dev
 
 # set default user
 export DEFAULT_USER=`whoami`
@@ -37,7 +38,6 @@ source $ZSH/window.zsh
 autoload -Uz compinit
 if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
   compinit
-  compdump
 else
   compinit -C
 fi
@@ -45,11 +45,17 @@ fi
 # load every completion after autocomplete loads
 source $ZSH/completion.zsh
 
-# load zgen
-source "${HOME}/.zgen/zgen.zsh"
+# Load zgen only if a user types a zgen command
+zgen () {
+	if [[ ! -s ${ZDOTDIR:-${HOME}}/.zgen/zgen.zsh ]]; then
+		git clone --recursive https://github.com/tarjoilija/zgen.git ${ZDOTDIR:-${HOME}}/.zgen
+	fi
+	source ${ZDOTDIR:-${HOME}}/.zgen/zgen.zsh
+	zgen "$@"
+}
 
-# if the init scipt doesn't exist
-if ! zgen saved; then
+# check if there's no init script
+if [[ ! -s ${ZDOTDIR:-${HOME}}/.zgen/init.zsh ]]; then
   echo "Creating a zgen save"
 
   zgen oh-my-zsh
@@ -81,36 +87,34 @@ if ! zgen saved; then
   # save all to init script
   zgen save
 
+else
+  source ${ZDOTDIR:-${HOME}}/.zgen/init.zsh
 fi
 
-# powerline go
-# function powerline_precmd() {
-#   eval "$($GOPATH/bin/powerline-go -error $? -shell zsh -theme $GOPATH/src/github.com/justjanne/powerline-go/themes/powerlevel9k.json -eval -modules "nix-shell,user,cwd,perms,git,exit" -modules-right "aws,docker,terraform-workspace")"
-# }
+eval "$(aws-vault --completion-script-zsh)"
+eval "$(_POLICY_SENTRY_COMPLETE=source_zsh policy_sentry)"
 
-# function install_powerline_precmd() {
-#   for s in "${precmd_functions[@]}"; do
-#     if [ "$s" = "powerline_precmd" ]; then
-#       return
-#     fi
-#     done
-#     precmd_functions+=(powerline_precmd)
-# }
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-# if [ "$TERM" != "linux" ]; then
-#   install_powerline_precmd
-# fi
+# place this after nvm initialization!
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
 
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /home/ibartholomew/Development/cioppino/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/ibartholomew/Development/cioppino/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /home/ibartholomew/Development/cioppino/node_modules/tabtab/.completions/sls.zsh ]] && . /home/ibartholomew/Development/cioppino/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /home/ibartholomew/Development/cioppino/node_modules/tabtab/.completions/slss.zsh ]] && . /home/ibartholomew/Development/cioppino/node_modules/tabtab/.completions/slss.zsh
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export GOPATH=$HOME/go
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
