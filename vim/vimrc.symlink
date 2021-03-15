@@ -87,7 +87,7 @@ Plug 'morhetz/gruvbox'
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'numirias/semshi', {'for': 'python', 'do': ':UpdateRemotePlugins'}
 Plug 'othree/html5.vim', { 'for': ['html', 'css']}
 Plug 'othree/jsdoc-syntax.vim'
 Plug 'pangloss/vim-javascript'
@@ -113,6 +113,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-ruby/vim-ruby', {'for': 'ruby'},
 Plug 'vim-scripts/BufOnly.vim'
+Plug 'vimwiki/vimwiki'
 Plug 'w0ng/vim-hybrid'
 Plug 'w0rp/ale',
 Plug 'xolox/vim-colorscheme-switcher'
@@ -385,7 +386,7 @@ let g:jsdoc_return_type	= 0
 let g:jsdoc_return_description = 0
 
 " coc.nvim
-let g:coc_node_path = $HOME.'/.nvm/versions/node/v10.16.0/bin/node'
+let g:coc_node_path = '/Users/ibartholomew/.asdf/shims/node'
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -438,3 +439,9 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
 hi CocHighlightText  guibg=#111111 ctermbg=238
+
+" vimwiki
+let wiki = {}
+let wiki.path = '~/vimwiki/'
+let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'yaml': 'yaml'}
+let g:vimwiki_list = [wiki]
