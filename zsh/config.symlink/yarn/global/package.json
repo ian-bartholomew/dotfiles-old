@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "decaffeinate": "^3.3.2",
-    "node-gyp": "^3.6.2"
-  }
-}
