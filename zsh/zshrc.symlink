@@ -118,5 +118,10 @@ eval "$(_POLICY_SENTRY_COMPLETE=source_zsh policy_sentry)"
 # }
 # add-zsh-hook chpwd load-nvmrc
 # load-nvmrc
-
-. /usr/local/opt/asdf/asdf.sh
+if test "$(uname)" = "Darwin"
+then
+  . /usr/local/opt/asdf/asdf.sh
+elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
+then
+  . $HOME/.asdf/asdf.sh
+fi
