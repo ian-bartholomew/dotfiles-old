@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PACKAGES="docker eslint jest json marketplace prettier python sh snippets solargraph sql tsserver ultisnips yaml"
+PACKAGES="docker eslint jest json marketplace prettier python sh snippets solargraph sql tsserver ultisnips yaml go"
 
 echo "Installing COC extentions"
 # Install extensions

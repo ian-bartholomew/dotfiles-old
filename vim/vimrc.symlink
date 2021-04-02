@@ -445,3 +445,6 @@ let wiki = {}
 let wiki.path = '~/vimwiki/'
 let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'yaml': 'yaml'}
 let g:vimwiki_list = [wiki]
+
+" gopls
+autocmd BufWritePre *.go :call CocActionAsync('runCommand', 'editor.action.organizeImport')
