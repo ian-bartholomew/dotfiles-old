@@ -1,7 +1,7 @@
 # zmodload zsh/zprof
 # shortcut to this dotfiles path is $ZSH
 export DOTFILES=$HOME/.dotfiles
-export ZSH=$DOTFILES/zsh
+export ZSH=$DOTFILES
 
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Dev
@@ -17,33 +17,33 @@ then
   source ~/.localrc
 fi
 
+# all of our zsh files
+typeset -U config_files
+config_files=($ZSH/**/*.zsh)
+
+# load the path files
+for file in ${(M)config_files:#*/path.zsh}
+do
+  source $file
+done
+
 # load everything but the path and completion files
-source $ZSH/aliases.zsh
-source $ZSH/config.zsh
-source $ZSH/fpath.zsh
-source $ZSH/prompt.zsh
-source $ZSH/window.zsh
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
+do
+  source $file
+done
 
 # initialize autocomplete here, otherwise functions won't be loaded
-# On slow systems, checking the cached .zcompdump file to see if it must be
-# regenerated adds a noticable delay to zsh startup.  This little hack restricts
-# it to once a day.
-# https://gist.github.com/ctechols/ca1035271ad134841284
-#
-# The globbing is a little complicated here:
-# - '#q' is an explicit glob qualifier that makes globbing work within zsh's [[ ]] construct.
-# - 'N' makes the glob pattern evaluate to nothing when it doesn't match (rather than throw a globbing error)
-# - '.' matches "regular files"
-# - 'mh+24' matches files (or directories or whatever) that are older than 24 hours.
-autoload -Uz compinit
-if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-  compinit
-else
-  compinit -C
-fi
+autoload -U compinit
+compinit
 
 # load every completion after autocomplete loads
-source $ZSH/completion.zsh
+for file in ${(M)config_files:#*/completion.zsh}
+do
+  source $file
+done
+
+unset config_files
 
 # Load zgen only if a user types a zgen command
 zgen () {
@@ -91,33 +91,6 @@ else
   source ${ZDOTDIR:-${HOME}}/.zgen/init.zsh
 fi
 
-eval "$(aws-vault --completion-script-zsh)"
-eval "$(_POLICY_SENTRY_COMPLETE=source_zsh policy_sentry)"
-
-# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# # place this after nvm initialization!
-# autoload -U add-zsh-hook
-# load-nvmrc() {
-#   local node_version="$(nvm version)"
-#   local nvmrc_path="$(nvm_find_nvmrc)"
-
-#   if [ -n "$nvmrc_path" ]; then
-#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-#     if [ "$nvmrc_node_version" = "N/A" ]; then
-#       nvm install
-#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
-#       nvm use
-#     fi
-#   elif [ "$node_version" != "$(nvm version default)" ]; then
-#     echo "Reverting to nvm default version"
-#     nvm use default
-#   fi
-# }
-# add-zsh-hook chpwd load-nvmrc
-# load-nvmrc
 if test "$(uname)" = "Darwin"
 then
   . /usr/local/opt/asdf/asdf.sh
