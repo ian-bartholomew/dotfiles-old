@@ -26,5 +26,8 @@
         "usePlaceholders": true
       }
     }
+  },
+  "yaml.schemas": {
+    "kubernetes": "/*.yaml"
   }
 }
