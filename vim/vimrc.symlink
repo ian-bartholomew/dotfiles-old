@@ -1,4 +1,6 @@
 " ------ Core ---------
+"
+"
 
 set nocompatible
 filetype on
