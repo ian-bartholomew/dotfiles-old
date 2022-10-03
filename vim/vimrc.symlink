@@ -1,42 +1,35 @@
 " ------ Core ---------
 
 set nocompatible
-filetype on
-filetype plugin on
-filetype plugin indent on
+filetype on                      " enable file type detection
+filetype plugin on               " enable loading the plugin files for specific file types
 syntax on
-syntax enable           " enable syntax processing
+syntax enable                    " enable syntax processing
 set autoread                     " Manually refresh file
 set backspace=indent,eol,start   " Intuitive backspacing.
-set clipboard=unnamed            " Normal OS clipboard interaction
+set clipboard+=unnamedplus       " Normal OS clipboard interaction
 set copyindent                   " Copy the last indent on autoindent
 set encoding=UTF-8
 set eol                          " Add new line to end of file on save
-set hidden              " allow buffers to be hidden and not saved
-set history=100         " only remember 100 commands
-set hlsearch            " highlight matches
-set ignorecase          " ignore case when searching
-set incsearch           " search as characters are entered
-set lazyredraw          " redraw only when we need to.
-set nobackup             " we dont need a backup
-set noerrorbells         " don't beep
-set noswapfile           " we dont need swp files
-set nowrap              " don't wrap lines
-set showcmd             " show command in bottom bar
-set smartcase           " ignore case if search pattern is all lowercase,
-set title                " change the terminal's title
-set ttyfast             " send more chars to the term at once
-set visualbell           " don't beep
+set history=100                  " only remember 100 commands
+set hlsearch                     " highlight matches
+set inccommand=split             " Shows the effects of a command incrementally, as you type, with a preview
+set incsearch                    " search as characters are entered
+set lazyredraw                   " redraw only when we need to.
+set nobackup                     " we dont need a backup
+set noerrorbells                 " don't beep
+set noswapfile                   " we dont need swp files
+set nowrap                       " don't wrap lines
+set shortmess+=c                 " don't give |ins-completion-menu| messages.
+set showcmd                      " show command in bottom bar
+set signcolumn=yes               " always show signcolumns
+set title                        " change the terminal's title
+set ttyfast                      " send more chars to the term at once
+set updatetime=300               " Smaller updatetime for CursorHold & CursorHoldI
+set visualbell                   " don't beep
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/tmp/*,*.so,*.swp,*.zip
-set wildmenu            " visual autocomplete for command menu
-" Smaller updatetime for CursorHold & CursorHoldI
-set updatetime=300
+set wildmenu                     " visual autocomplete for command menu
 
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
 " ---- Indentation ------
 
 filetype indent on      " load filetype-specific indent files
@@ -48,110 +41,41 @@ set smartindent
 set autoindent
 
 " ------ Folding --------
+
 set foldenable          " enable folding
 set foldlevelstart=10   " open most folds by default
 set foldnestmax=10      " 10 nested fold max
 set foldmethod=indent   " fold based on indent level
-" fold top level functions
-nnoremap <silent> <leader>z :let&l:fdl=indent('.')/&sw<cr>
-" space open/closes folds
-nnoremap <space> za
-
-" ------ Plugins ---------
-
-call plug#begin('~/.vim/plugged')
-
-Plug '1995eaton/vim-better-javascript-completion', { 'for': [ 'javascript', 'jsx', 'javascript.jsx']}
-Plug 'Chiel92/vim-autoformat'
-Plug 'MattesGroeger/vim-bookmarks'
-Plug 'Raimondi/delimitMate'
-Plug 'SirVer/ultisnips'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'Yggdroot/indentLine'
-Plug 'airblade/vim-gitgutter'
-Plug 'ajmwagar/vim-deus'
-Plug 'alvan/vim-closetag'
-Plug 'blueshirts/darcula'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'elzr/vim-json'
-Plug 'fatih/vim-go'
-Plug 'hashivim/vim-terraform', {'for': 'terraform'}
-Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript', 'tag': '1.0.0'}
-Plug 'junegunn/vim-easy-align'
-Plug 'majutsushi/tagbar'
-Plug 'mhinz/vim-startify'
-Plug 'mileszs/ack.vim'
-Plug 'moll/vim-node', { 'for': 'javascript'}
-Plug 'morhetz/gruvbox'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'numirias/semshi', {'for': 'python', 'do': ':UpdateRemotePlugins'}
-Plug 'othree/jsdoc-syntax.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
-Plug 'ruanyl/coverage.vim', { 'for': ['javascript', 'javascript.jsx' ]}
-Plug 'ruanyl/vim-fixmyjs', { 'for': 'javascript'}
-Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'sheerun/vim-polyglot'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'towolf/vim-helm'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'tsandall/vim-rego', {'for': 'rego'}
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-scripts/BufOnly.vim'
-Plug 'w0ng/vim-hybrid'
-Plug 'w0rp/ale',
-Plug 'xolox/vim-colorscheme-switcher'
-Plug 'xolox/vim-misc',
-
-" Initialize plugin system
-call plug#end()
 
 " ------ Theme ---------
+
 set background=dark
-" colors deus
-silent! colorscheme gruvbox
-" silent! colorscheme darcula
-
-set t_Co=256                      " Use 256 Colors
-" set guifont=Menlo\ Regular:h18
-" set colorcolumn=90
-set number
-" set cursorcolumn                 " add a vertical cursor highlight
-set cursorline          " highlight current line
-set showmatch           " highlight matching [{()}]
-" highlight white spaces
-" set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
-
+set t_Co=256                                  " Use 256 Colors
+set cursorline                                " highlight current line
+set laststatus=2                              " Always show statusline
+set listchars=tab:>.,trail:.,extends:#,nbsp:. " highlight white spaces
+set number                                    " show line numbers
+set showmatch                                 " highlight matching [{()}]
 
 " Useful status information at bottom of screen
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 set statusline+=%#warningmsg#
 set statusline+=%*
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=1
 
 " Always show statusline
 set laststatus=2
 
 " ---- Bindings -----------
 
+" fold top level functions
+nnoremap <silent> <leader>z :let&l:fdl=indent('.')/&sw<cr>
+" space open/closes folds
+nnoremap <space> za
+
 " Reload vim config
 map <leader>sv :source ~/.vimrc<CR>
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
-
-" call cx + co for omnicompletion
-inoremap <C-Space> <C-x><C-o>
-inoremap <C-@> <c-x><c-o>
 
 "Better window navigation
 nnoremap <C-j> <C-w>j
@@ -159,15 +83,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" NERDCommenter
-nnoremap ,c :call NERDComment(0,"toggle")<CR>
-vnoremap ,c :call NERDComment(0,"toggle")<CR>
-let g:NERDSpaceDelims = 1
-let g:NERDDefaultAlign = 'left'
-let g:NERDDCompactSexComs = 1
-
-" hh to generate new horizontal split
-"nnoremap <silent> hs <C-w>s
 " vv to generate new vertical split
 nnoremap <silent> vv <C-w>v
 
@@ -176,10 +91,6 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
-
-" buffers
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
 
 " Pull word under cursor into LHS of a substitute (for quick search and
 " replace)
@@ -192,45 +103,90 @@ nmap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 :command! W w
 :command! Q q
 
+" yank to linux clipboard
+map <Leader>y "*y
+map <Leader>p "*p
 
 " ------ AutoCmd ----------
+
 " Auto clear whitespaces on save
 autocmd BufWritePre * :%s/\s\+$//e
-autocmd BufNewFile,BufRead *.scss set ft=scss.css
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 " spell check
-" autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd FileType gitcommit setlocal spell
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab colorcolumn=81
 
 " ------ FileType --------
+
 augroup filetypedetect
-  au FileType qf wincmd J
-  au BufRead,BufNewFile *.cjsx setfiletype coffee
   au BufWrite *.rb :Autoformat
-  " au BufWritePre *.tf :TerraformFmt
+
+  " run the linter for hcl files, and reload them
+  au BufWritePost *.hcl silent! !terragrunt hclfmt --terragrunt-hclfmt-file %
+  au BufWritePost *.hcl edit
+  au BufWritePost *.hcl redraw!
 augroup END
+
+" ------ Plugins ---------
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'Raimondi/delimitMate'
+Plug 'SirVer/ultisnips'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Yggdroot/indentLine'
+Plug 'airblade/vim-gitgutter'
+Plug 'aquasecurity/vim-tfsec', {'for': 'terraform'}
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'dense-analysis/ale',
+Plug 'elzr/vim-json', {'for': 'json'}
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go'}
+Plug 'hashivim/vim-terraform', {'for': ['terraform', 'tf', 'hcl']}
+Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'javascript.jsx','typescript'], 'do': 'make install' }
+Plug 'itspriddle/vim-shellcheck', { 'for': 'sh'}
+Plug 'jvirtanen/vim-hcl', {'for': 'hcl'}
+Plug 'lepture/vim-jinja', {'for': 'jinja'}
+Plug 'majutsushi/tagbar'
+Plug 'mileszs/ack.vim'
+Plug 'morhetz/gruvbox'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'md']}
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'html'] }
+Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'sheerun/vim-polyglot'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'towolf/vim-helm'
+Plug 'tpope/vim-abolish'
+" Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tsandall/vim-rego', {'for': 'rego'}
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/BufOnly.vim'
+Plug 'xolox/vim-colorscheme-switcher'
+Plug 'xolox/vim-misc',
+
+" Initialize plugin system
+call plug#end()
 
 "--------- PLUGIN OPTS ---------
 
-" Plugin NERDTree
+" Theme, have to call this after the plugin is loaded
+silent! colorscheme gruvbox
 
-" Ignore .pyc files in NERDTree
-let NERDTreeIgnore=['\.pyc$', '\~$', 'node_modules']
+"" Plugin NERDTree
+
+" Ignore files in NERDTree
+let NERDTreeIgnore=['\.vscode$', '\.git$', '\.pyc$', '\~$', 'node_modules']
 
 nmap ,n :NERDTreeFind<CR>
 nmap ,m :NERDTreeToggle<CR>
-
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:ycm_python_binary_path = 'python'
-
-" better key bindings for UltiSnipsExpandTrigger
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsExpandTrigger = '<f5>'
 
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
@@ -238,6 +194,7 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
+" Leaving this here for now as reference
 " call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
 " call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
 " call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
@@ -251,7 +208,38 @@ endfunction
 " call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 " call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 " call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-" ACK
+
+" NERDTree Syntax
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = 'FE405F'
+let s:git_orange = 'F54D27'
+let s:grey = '9e9e9e'
+let g:NERDTreeLimitedSyntax = 1 " needed for perf
+let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+let g:NERDTreeExtensionHighlightColor['md'] = s:darkBlue
+let g:NERDTreeExtensionHighlightColor['sh'] = s:green
+let g:NERDTreeExtensionHighlightColor['go'] = s:blue
+let g:NERDTreeExtensionHighlightColor['txt'] = s:grey
+
+"" ACK
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
@@ -260,7 +248,7 @@ noremap <leader>a :Ack<space>
 " search for the current word in ack
 noremap <leader>as :Ack <C-r><C-w>
 
-" Airline status line
+"" Airline status line
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 " let g:airline_theme='gruvbox'
@@ -270,7 +258,8 @@ let g:airline_theme='minimalist'
 let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
 \  'javascript': ['eslint'],
-\  'python': ['black']
+\  'yaml': ['yamllint'],
+\  'python': ['pylint', 'black']
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -279,72 +268,45 @@ let g:ale_fixers = {
 \       'eslint'
 \   ],
 \   'terraform': ['terraform'],
+\   'hcl': ['terraform'],
+\   'yaml': ['prettier'],
 \   'scss': [ 'stylelint' ],
 \   'python': ['black']
 \}
-" let g:ale_open_list = 1
-" let g:ale_set_loclist = 0
-" let g:ale_set_quickfix = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_options = '--trailing-comma es5'
+let g:ale_echo_msg_format = 'ale: [%linter%] %s [%severity%]'
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
 noremap <leader>p :ALEFix<cr>
-" ctrlp plugin
+
+"" ctrlp plugin
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_working_path_mode = '0'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_max_files = 0
 let g:ctrlp_custom_ignore ='pdf\|tmp\|.DS_Store\|.sass-cache\|lcov-report\|bower_components\|cache-loader\|capistrano\|circle-ci\|github\|vscode\|log\|node_modules\|\v[\/]\.(git|hg|svn)$'
-
-"nmap [ :CtrlP<CR>
 nmap - :CtrlP<CR>
 nmap _ :CtrlPBuffer<CR>
 
-" Deliminate
-au FileType eruby let b:delimitMate_autoclose = 0
-
-" vim-easy-align
-let g:easy_align_ignore_groups = []
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-" vim-closetag filenames
-let g:closetag_filenames = "*.cjsx,*.html,*.xhtml,*.phtml,*.jsx,*.js,*.erb"
-
-" vim-jsx
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files"
-
-" vim-json
+"" vim-json plugin
 let g:vim_json_syntax_conceal = 0
 
-" vim-prettier
+"" vim-prettier plugin
 let g:prettier#exec_cmd_async = 1
 " when running at every change you may want to disable quickfix
 let g:prettier#quickfix_enabled = 0
 " run before save async
 let g:prettier#autoformat = 0
-
 " single quotes over double quotes
 let g:prettier#config#single_quote = 'false'
 let g:prettier#config#trailing_comma = 'es5'
 let g:prettier#config#bracket_spacing = 'true'
 
-"autocmd BufWritePre *.js,*.jsx,*.json PrettierAsync
-
-" fixmyjs
-let g:fixmyjs_rc_filename = ['.eslintrc', '.eslintrc.json']
-noremap <Leader>f :Fixmyjs<CR>
-
-" jsdoc
-nmap <silent> <C-d> <Plug>(jsdoc)
-
-" TagBar
+"" TagBar
 noremap <Leader>t :TagbarToggle<CR>
 let g:tagbar_type_ruby = {
     \ 'kinds' : [
@@ -357,28 +319,18 @@ let g:tagbar_type_ruby = {
     \ ]
 \ }
 
-" pangloss javascript
-let g:javascript_plugin_jsdoc = 1
 
-" instant markdown
-let g:instant_markdown_autostart = 0
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_conceal_code_blocks = 0
+"" COC.VIM
 
+" TextEdit might fail if hidden is not set.
+set hidden
 
-" coverage
-" let g:coverage_json_report_path = 'coverage/coverage-final.json'
+" Some servers have issues with backup files, see #649.
+set nowritebackup
 
-" jsdoc
-let g:jsdoc_enable_es6 = 1
-let g:jsdoc_allow_input_prompt = 1
-let g:jsdoc_input_description = 1
-let g:jsdoc_additional_descriptions	= 1
-let g:jsdoc_return_type	= 0
-let g:jsdoc_return_description = 0
+" Give more space for displaying messages.
+set cmdheight=2
 
-" coc.nvim
-" let g:coc_node_path = '/Users/ibartholomew/.asdf/shims/node'
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
@@ -402,48 +354,89 @@ endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" to avoid conflicts with coc
-let g:endwise_no_mappings=1
 
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" Remap keys for gotos
+" GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window
+" Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
-endfunction
+endfunction "
 
-" Highlight symbol under cursor on CursorHold
+" Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+" xmap <leader>a  <Plug>(coc-codeaction-selected)
+" nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" Fix autofix problem of current line
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
-hi CocHighlightText  guibg=#111111 ctermbg=238
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
 
-" disable vim-go :GoDef short cut (gd)
-" this is handled by LanguageClient [LC]
-let g:go_def_mapping_enabled = 0
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" gopls
-autocmd BufWritePre *.go :call CocActionAsync('runCommand', 'editor.action.organizeImport')
+"" NERDCommenter
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+let g:NERDToggleCheckAllLines = 1
+
+let g:UltiSnipsExpandTrigger = "<nop>"
+
+"" markdown
+" don't hide the special characters
+set conceallevel=0
+let g:vim_markdown_conceal = 0
+
+"" vim-go
+let g:go_fmt_command="gopls"
+let g:go_gopls_gofumpt=1
+let g:go_metalinter_command = "golangci-lint"
+
+au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
+au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
+au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
+au FileType go nmap <F9> :GoCoverageToggle -short<cr>
+au FileType go nmap <F10> :GoTest -short<cr>
+au FileType go nmap <F12> <Plug>(go-def)
