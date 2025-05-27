@@ -1,32 +1,14 @@
 " ------ Core ---------
 
-set nocompatible
-filetype on                      " enable file type detection
-filetype plugin on               " enable loading the plugin files for specific file types
-syntax on
-syntax enable                    " enable syntax processing
-set autoread                     " Manually refresh file
 set backspace=indent,eol,start   " Intuitive backspacing.
 set clipboard+=unnamedplus       " Normal OS clipboard interaction
-set copyindent                   " Copy the last indent on autoindent
-set encoding=UTF-8
 set eol                          " Add new line to end of file on save
 set history=100                  " only remember 100 commands
 set hlsearch                     " highlight matches
 set inccommand=split             " Shows the effects of a command incrementally, as you type, with a preview
 set incsearch                    " search as characters are entered
-set lazyredraw                   " redraw only when we need to.
-set nobackup                     " we dont need a backup
-set noerrorbells                 " don't beep
-set noswapfile                   " we dont need swp files
 set nowrap                       " don't wrap lines
-set shortmess+=c                 " don't give |ins-completion-menu| messages.
 set showcmd                      " show command in bottom bar
-set signcolumn=yes               " always show signcolumns
-set title                        " change the terminal's title
-set ttyfast                      " send more chars to the term at once
-set updatetime=300               " Smaller updatetime for CursorHold & CursorHoldI
-set visualbell                   " don't beep
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/tmp/*,*.so,*.swp,*.zip
 set wildmenu                     " visual autocomplete for command menu
 
@@ -52,18 +34,9 @@ set foldmethod=indent   " fold based on indent level
 set background=dark
 set t_Co=256                                  " Use 256 Colors
 set cursorline                                " highlight current line
-set laststatus=2                              " Always show statusline
 set listchars=tab:>.,trail:.,extends:#,nbsp:. " highlight white spaces
 set number                                    " show line numbers
 set showmatch                                 " highlight matching [{()}]
-
-" Useful status information at bottom of screen
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
-set statusline+=%#warningmsg#
-set statusline+=%*
-
-" Always show statusline
-set laststatus=2
 
 " ---- Bindings -----------
 
@@ -72,25 +45,11 @@ nnoremap <silent> <leader>z :let&l:fdl=indent('.')/&sw<cr>
 " space open/closes folds
 nnoremap <space> za
 
-" Reload vim config
-map <leader>sv :source ~/.vimrc<CR>
-" turn off search highlight
-nnoremap <leader><space> :nohlsearch<CR>
-
-"Better window navigation
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+nnoremap <leader>pp "0p<CR>
 
 " vv to generate new vertical split
 nnoremap <silent> vv <C-w>v
-
-" Lets break some bad habits
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+nnoremap <silent> vs <C-w>s
 
 " Pull word under cursor into LHS of a substitute (for quick search and
 " replace)
@@ -107,6 +66,20 @@ nmap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 map <Leader>y "*y
 map <Leader>p "*p
 
+"These are to cancel the default behavior of d, D, c, C
+"  to put the text they delete in the default register.
+"  Note that this means e.g. "ad won't copy the text into
+"  register a anymore.  You have to explicitly yank it.
+" nnoremap d "_d
+" vnoremap d "_d
+" nnoremap D "_D
+" vnoremap D "_D
+nnoremap c "_c
+vnoremap c "_c
+nnoremap C "_C
+vnoremap C "_C
+xnoremap p pgvy
+
 " ------ AutoCmd ----------
 
 " Auto clear whitespaces on save
@@ -118,8 +91,6 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab colorcolumn=81
 " ------ FileType --------
 
 augroup filetypedetect
-  au BufWrite *.rb :Autoformat
-
   " run the linter for hcl files, and reload them
   au BufWritePost *.hcl silent! !terragrunt hclfmt --terragrunt-hclfmt-file %
   au BufWritePost *.hcl edit
@@ -130,36 +101,46 @@ augroup END
 
 call plug#begin('~/.vim/plugged')
 
+" Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ryanoasis/vim-devicons'
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'tpope/vim-endwise'
+Plug 'MunifTanjim/nui.nvim', { 'branch': 'main' }
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'jackMort/ChatGPT.nvim', { 'branch': 'main' }
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/indentLine'
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter', { 'branch': 'main' }
 Plug 'aquasecurity/vim-tfsec', {'for': 'terraform'}
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dense-analysis/ale',
 Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go'}
-Plug 'hashivim/vim-terraform', {'for': ['terraform', 'tf', 'hcl']}
+Plug 'hashivim/vim-terraform', {'for': ['terraform', 'tf', 'hcl'] }
 Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'javascript.jsx','typescript'], 'do': 'make install' }
 Plug 'itspriddle/vim-shellcheck', { 'for': 'sh'}
-Plug 'jvirtanen/vim-hcl', {'for': 'hcl'}
+Plug 'jvirtanen/vim-hcl', {'for': 'hcl', 'branch': 'main'}
 Plug 'lepture/vim-jinja', {'for': 'jinja'}
-Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'md']}
-Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'html'] }
-Plug 'ryanoasis/vim-devicons'
+Plug 'preservim/tagbar'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'html'] }
+Plug 'sainnhe/gruvbox-material'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'sharkdp/fd'
 Plug 'sheerun/vim-polyglot'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'tom-anders/telescope-vim-bookmarks.nvim', { 'branch': 'main' }
 Plug 'towolf/vim-helm'
 Plug 'tpope/vim-abolish'
-" Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sensible'
@@ -177,71 +158,9 @@ call plug#end()
 
 "--------- PLUGIN OPTS ---------
 
-" Theme, have to call this after the plugin is loaded
-silent! colorscheme gruvbox
-
-"" Plugin NERDTree
-
-" Ignore files in NERDTree
-let NERDTreeIgnore=['\.vscode$', '\.git$', '\.pyc$', '\~$', 'node_modules']
-
-nmap ,n :NERDTreeFind<CR>
-nmap ,m :NERDTreeToggle<CR>
-
-" NERDTress File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-
-" Leaving this here for now as reference
-" call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
-" call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-" call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-" call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-" call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-" call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-" call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-" call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-" call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-" call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-" call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-" call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-" call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-
-" NERDTree Syntax
-let s:brown = "905532"
-let s:aqua =  "3AFFDB"
-let s:blue = "689FB6"
-let s:darkBlue = "44788E"
-let s:purple = "834F79"
-let s:lightPurple = "834F79"
-let s:red = "AE403F"
-let s:beige = "F5C06F"
-let s:yellow = "F09F17"
-let s:orange = "D4843E"
-let s:darkOrange = "F16529"
-let s:pink = "CB6F6F"
-let s:salmon = "EE6E73"
-let s:green = "8FAA54"
-let s:lightGreen = "31B53E"
-let s:white = "FFFFFF"
-let s:rspec_red = 'FE405F'
-let s:git_orange = 'F54D27'
-let s:grey = '9e9e9e'
-let g:NERDTreeLimitedSyntax = 1 " needed for perf
-let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
-let g:NERDTreeExtensionHighlightColor['md'] = s:darkBlue
-let g:NERDTreeExtensionHighlightColor['sh'] = s:green
-let g:NERDTreeExtensionHighlightColor['go'] = s:blue
-let g:NERDTreeExtensionHighlightColor['txt'] = s:grey
-
 "" ACK
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag --,m,mvimgrep'
 endif
 
 noremap <leader>a :Ack<space>
@@ -255,42 +174,60 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='minimalist'
 
 "" ALE
-let g:airline#extensions#ale#enabled = 1
+" let g:airline#extensions#ale#enabled = 1
+let js_fixers = ['prettier', 'eslint']
+let ts_fixers = ['eslint']
 let g:ale_linters = {
-\  'javascript': ['eslint'],
-\  'yaml': ['yamllint'],
-\  'python': ['pylint', 'black']
+\   'javascript': js_fixers,
+\   'javascript.jsx': js_fixers,
+\   'yaml': ['yamllint'],
+\   'python': ['pylint', 'black'],
+\   'sh': ['shellcheck'] ,
+\   'typescript': ts_fixers,
+\   'typescriptreact': ts_fixers
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': [
-\       'prettier',
-\       'eslint'
-\   ],
-\   'terraform': ['terraform'],
+\   'css': ['prettier'],
 \   'hcl': ['terraform'],
-\   'yaml': ['prettier'],
-\   'scss': [ 'stylelint' ],
-\   'python': ['black']
+\   'javascript': js_fixers,
+\   'javascript.jsx': js_fixers,
+\   'json': ['prettier'],
+\   'python': ['black'],
+\   'sh': ['shfmt'],
+\   'terraform': ['terraform'],
+\   'typescript': ['prettier'],
+\   'typescriptreact': js_fixers,
+\   'yaml': ['prettier']
 \}
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_options = '--trailing-comma es5'
 let g:ale_echo_msg_format = 'ale: [%linter%] %s [%severity%]'
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
+let g:ale_terraform_checkov_options = '--skip-check CKV_TF_1'
 noremap <leader>p :ALEFix<cr>
+noremap <leader>e :ALEPopulateQuickfix<cr>
 
 "" ctrlp plugin
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_working_path_mode = '0'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_max_files = 0
-let g:ctrlp_custom_ignore ='pdf\|tmp\|.DS_Store\|.sass-cache\|lcov-report\|bower_components\|cache-loader\|capistrano\|circle-ci\|github\|vscode\|log\|node_modules\|\v[\/]\.(git|hg|svn)$'
-nmap - :CtrlP<CR>
-nmap _ :CtrlPBuffer<CR>
+" set runtimepath^=~/.vim/bundle/ctrlp.vim
+" let g:ctrlp_match_window = 'bottom,order:ttb'
+" let g:ctrlp_working_path_mode = '0'
+" let g:ctrlp_show_hidden = 1
+" let g:ctrlp_max_files = 0
+" let g:ctrlp_custom_ignore ='pdf\|tmp\|.DS_Store\|.sass-cache\|lcov-report\|bower_components\|cache-loader\|capistrano\|circle-ci\|github\|vscode\|log\|node_modules\|\v[\/]\.(git|hg|svn)$'
+" nmap - :CtrlP<CR>
+" nmap _ :CtrlPBuffer<CR>
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap - <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap _ <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fm <cmd>Telescope vim_bookmarks all<cr>
 
 "" vim-json plugin
 let g:vim_json_syntax_conceal = 0
@@ -426,8 +363,8 @@ let g:UltiSnipsExpandTrigger = "<nop>"
 
 "" markdown
 " don't hide the special characters
-set conceallevel=0
 let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
 
 "" vim-go
 let g:go_fmt_command="gopls"
@@ -440,3 +377,65 @@ au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
 au FileType go nmap <F9> :GoCoverageToggle -short<cr>
 au FileType go nmap <F10> :GoTest -short<cr>
 au FileType go nmap <F12> <Plug>(go-def)
+
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    disable = {"vim"}
+  }
+}
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
+-- empty setup using defaults
+require("nvim-tree").setup({
+  renderer = {
+    root_folder_label = false,
+  },
+  filters = {
+    dotfiles = true,
+  },
+  view = {
+    width = 40,
+    side = "left",
+  },
+})
+
+require('telescope').load_extension('vim_bookmarks')
+
+require("chatgpt").setup({
+    chat = {
+        keymaps = {
+            close = { "jk", "kj", "<Esc>" },
+            yank_last = "<C-y>",
+            scroll_up = "<C-u>",
+            scroll_down = "<C-d>",
+            toggle_settings = "<C-o>",
+            new_session = "<C-n>",
+            cycle_windows = "<Tab>",
+        },
+    },
+    popup_input = {
+        submit = "<C-s>",
+    },
+    openai_params = {
+        models = "gpt-4-turbo-preview"
+    }
+})
+
+
+EOF
+
+highlight NvimTreeEndOfBuffer guibg=#2d2d2d
+hi NvimTreeNormal guibg=#2d2d2d
+
+" Make sure we set terraform files right
+autocmd BufNewFile,BufRead *.tf set filetype=terraform
+autocmd BufNewFile,BufRead *.tf set syntax=terraform
+
+vmap <silent> <leader>aa :<C-U>:ChatGPTEditWithInstructions<CR>

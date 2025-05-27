@@ -1,4 +1,5 @@
 .DS_Store
+*.orig
 *~
 *.swp
 Session.vim
@@ -11,3 +12,6 @@ tags-js
 .tern-port
 .localrc
 .agignore
+.tool-versions
+.ipynb_checkpoints/**/*
+CLAUDE.md
